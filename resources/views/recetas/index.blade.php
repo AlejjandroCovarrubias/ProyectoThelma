@@ -1,6 +1,7 @@
 <x-Layout titulo="VisaReceta">
 <!-- Single Product Start -->
-<div class="container-fluid py-1 mt-1">
+<br><br>
+<div class="container-fluid py-1 mt-5">
     <div class="container py-5">
         <div class="row g-4 mb-5">
             <div class="col-lg-12">
