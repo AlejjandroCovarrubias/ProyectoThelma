@@ -27,6 +27,11 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
+            'nickname'=> $this->faker->name(),
+            'aboutyou'=> $this->faker->sentence(),
+            'twitterID'=> $this->faker->userName(),
+            'instagramID'=> $this->faker->userName(),
+            'facebookID'=> $this->faker->userName(),
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
