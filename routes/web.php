@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecetaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('receta', RecetaController::class);
