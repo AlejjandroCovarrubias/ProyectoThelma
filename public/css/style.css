@@ -81,6 +81,13 @@
     border: 0;
 }
 
+.oculto{
+    display: none;
+    background-color: white;
+    padding: 10px;
+    z-index: 999;
+}
+
 .topbar {
     padding: 20px;
     border-radius: 230px 100px;
@@ -259,6 +266,12 @@
     transform: rotate(45deg);
     background: var(--bs-secondary);
     
+}
+
+.hr {
+    height: 1px;
+    border: 0px;
+    border-color: #bc6506;
 }
 /*** featurs End ***/
 

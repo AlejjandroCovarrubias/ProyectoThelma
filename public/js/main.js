@@ -11,6 +11,28 @@
     };
     spinner(0);
 
+    //show menu
+    var showMenuProfileCustom = function () {
+        $('#menu-opciones').fadeIn();
+    }
+
+    var hideMenuProfileCustom = function () {
+        $('#menu-opciones').fadeOut();
+    }
+
+    var showMenuProfileCustom2 = function () {
+        $("#menu-opciones").fadeIn(0);
+    }
+
+    var hideMenuProfileCustom2 = function () {
+        $("#menu-opciones").fadeOut(0);
+    }
+
+    $('#perfil-icon').mouseenter(showMenuProfileCustom);
+    $('#perfil-icon').mouseleave(hideMenuProfileCustom);
+
+    $('#menu-opciones').mouseenter(showMenuProfileCustom2);
+    $('#menu-opciones').mouseleave(hideMenuProfileCustom2);
 
     // Fixed Navbar
     $(window).scroll(function () {

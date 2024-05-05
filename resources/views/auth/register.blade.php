@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{asset('img/c-cocino.png')}}" width="160" height="165"/>
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -17,6 +17,11 @@
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="nickname" value="Nickname" />
+                <x-input id="nickname" class="block mt-1 w-full" type="text" name="nickname" :value="old('nickname')" required />
             </div>
 
             <div class="mt-4">

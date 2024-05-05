@@ -32,22 +32,35 @@
         <div class="container-fluid fixed-top">
             <div class="container px-0">
                 <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                    <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">Coitazo</h1></a>
-                    <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="fa fa-bars text-primary"></span>
-                    </button>
+                    <a href="index.html" class="navbar-brand"><img src="{{asset('img/c-cocino.png')}}" width="65" height="65"/></a> 
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                             
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>  
-                            <a href="#" class="my-auto">
+                            <a href="#" class="my-auto" id="perfil-icon">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
+                            <div id="menu-opciones" class="oculto">
+                                <ul>
+                                    <li>
+                                        <a href="#">Opcion1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Opcion2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Opcion3</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
+            </div>
+            <div class="hr">
+                <hr>
             </div>
         </div>
         <!-- Navbar End -->
@@ -77,7 +90,7 @@
     </body>
             
         <!-- JavaScript Libraries -->
-        <script src="'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{asset('lib/easing/easing.min.js')}}"></script>
         <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
