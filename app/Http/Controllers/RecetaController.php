@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecetaController extends Controller
 {
@@ -12,7 +13,9 @@ class RecetaController extends Controller
      */
     public function index()
     {
-        return view('recetas.index');
+        //$recipe=Auth::user()->recetas;
+        $recipe=Receta::all();
+        return view('recetas.index',compact('recipe'));
     }
 
     /**
@@ -28,7 +31,15 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $request->validate([
+            'title'=>'required|max:255',
+            'visibility'=>'required',
+            'text'=>'required|max:300',
+            'ingrediente'=>'required',
+            'instruc'=>'required',
+        ]);
+
     }
 
     /**

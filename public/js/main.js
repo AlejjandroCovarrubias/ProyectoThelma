@@ -28,6 +28,7 @@
         $("#menu-opciones").fadeOut(0);
     }
 
+
     $('#perfil-icon').mouseenter(showMenuProfileCustom);
     $('#perfil-icon').mouseleave(hideMenuProfileCustom);
 
