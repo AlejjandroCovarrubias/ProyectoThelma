@@ -14,7 +14,12 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <h4 class="fw-bold mb-3">Brocoli</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-bold mb-3">Brocoli</h4>
+                            <a href="#" id="favorito-btn" class="btn p-0" style="background:none; border:none;">
+                                 <i class="fa fa-heart text-secondary"></i>
+                            </a>
+                        </div>
                         <p class="mb-3">Creador: Juan Rios</p>
                         <div class="d-flex mb-4">
                             <i class="fa fa-star text-secondary"></i>
@@ -25,7 +30,6 @@
                         </div>
                         <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                         <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Añadir a Favoritos</a>
                     </div>
 
                     <nav>
