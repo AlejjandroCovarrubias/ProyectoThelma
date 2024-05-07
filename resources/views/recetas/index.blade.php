@@ -1,7 +1,7 @@
 <x-Layout titulo="VisaReceta">
 <!-- Single Product Start -->
-<br><br>
-<div class="container-fluid py-1 mt-5">
+<div class="container-fluid py-5 mt-5">
+<div class="container-fluid py-5 mt-5">
     <div class="container py-5">
         <div class="row g-4 mb-5">
             <div class="col-lg-12">
@@ -51,6 +51,7 @@
 
                     </div>
 
+
                     <nav>
                         <div class="nav nav-tabs mb-3">
                         </div>
@@ -59,9 +60,9 @@
                     <form action="{{route('comentario.store')}}" method="POST" class="col-lg-12">
                         @csrf
                         <h4 class="mb-5 fw-bold">Añade un comentario</h4>
-                        <div class="border-bottom rounded my-4">
+                                <div class="border-bottom rounded my-4">
                             <textarea name="comentario" id="comentario" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                        </div>
+                                </div>
 
                         <h4 class="mb-3 fw-bold">Valoración:</h4>
                         <p class="clasificacion">
@@ -79,11 +80,11 @@
 
                         <div class="mb-4">
                             <button type="submit" class="btn btn-primary">Enviar Comentario</button>
-                        </div>
+                            </div>
                     </form>
-                
-                    <nav>
-                        <div class="nav nav-tabs mb-3">
+
+                            <nav>
+                                <div class="nav nav-tabs mb-3">
                             <h4 class="mb-5 fw-bold">Comentario</h4>
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -94,43 +95,43 @@
                                     </ul>
                                 </div>
                             @endif   
-                        </div>
-                    </nav>
-                    <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                        <div class="d-flex">
-                            <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                            <div class="">
-                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                <div class="d-flex justify-content-between">
-                                    <h5>Jason Smith</h5>
-                                    <div class="d-flex mb-3">
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star"></i>
+                                </div>
+                            </nav>
+                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Jason Smith</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                     </div>
                                 </div>
-                                <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                            <div class="">
-                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                <div class="d-flex justify-content-between">
-                                    <h5>Sam Peters</h5>
-                                    <div class="d-flex mb-3">
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star text-secondary"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Sam Peters</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                             @foreach ($recipe as $recipe)
                                 <p><a href="{{ route('receta.show', $recipe) }}">Detalle</a></p>
                             @endforeach

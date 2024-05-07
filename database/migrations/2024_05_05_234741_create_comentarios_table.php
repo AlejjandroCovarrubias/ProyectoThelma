@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->longText('comentario');
             $table->unsignedTinyInteger('puntuacion')->default(5);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

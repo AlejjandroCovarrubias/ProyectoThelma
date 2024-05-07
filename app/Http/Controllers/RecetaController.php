@@ -22,7 +22,7 @@ class RecetaController extends Controller
     {
         //$recipe=Auth::user()->recetas;
         $recipe=Receta::all();
-        return view('recetas.index',compact('recipe'));
+        return view('recetas.index2', compact('recipe'));
     }
 
     /**
@@ -69,9 +69,12 @@ class RecetaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receta $receta) //testing
+    public function show($id) //testing
     {
-        return view('recetas.mireceta',compact('receta'));
+        $recipe=Receta::findOrFail($id);
+        $cliente=User::findOrFail($recipe->user_id);
+        
+        return view('recetas.mireceta',compact('recipe'), compact('cliente'));
     }
 
     /**
