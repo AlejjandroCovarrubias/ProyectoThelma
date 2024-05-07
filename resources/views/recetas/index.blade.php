@@ -122,6 +122,10 @@
                                 </div>
                             </div>
 
+                            @foreach ($recipe as $recipe)
+                                <p><a href="{{ route('receta.show', $recipe) }}">Detalle</a></p>
+                            @endforeach
+
 
 
                             

@@ -44,7 +44,7 @@
                             <div class="col-lg-5">
                                 <h4 class="fw-bold mb-3">Ingredientes</h4>
                                 <div class="border-bottom rounded" id="ingredientes-container">
-                                    <label style="padding-right: 20px;">Paso 1</label>
+                                    <label style="padding-right: 20px;">Ingrediente 1</label>
                                     <input type="text" placeholder="Ingrediente" id="ingrediente" name="ingrediente[]" class="form-control border-0 me-4">
                                 </div>
                                 <br>
@@ -60,7 +60,7 @@
                                     nuevoPaso.className = "border-bottom rounded";
                                     
                                     var nuevoLabel = document.createElement("label");
-                                    nuevoLabel.textContent = "Paso " + totalIngredientes;
+                                    nuevoLabel.textContent = "Ingrediente " + totalIngredientes;
                                     nuevoLabel.style.paddingRight = "25px";
                                     
                                     var nuevaInput = document.createElement("input");
@@ -127,11 +127,62 @@
                                 </div>
                             </nav>
 
+                            <div class="col-lg-7">
+                                <h4 class="fw-bold mb-3">Tags</h4>
+                                <div class="border-bottom rounded" id="tag-container">
+                                    <label>Tag 1</label>
+                                    <input type="text" class="form-control border-0 me-4" placeholder="Ingresa el paso..." id="tags" name="tags[]">
+                                </div>
+                                <br> 
+                                <button id="add-tag" class="btn border border-secondary text-primary rounded-pill px-4 py-3" type="button">Añadir tag...</button>
+                            </div>
+
+                            <script>
+                                document.getElementById("add-tag").addEventListener("click", function() {
+                                    var container = document.getElementById("tag-container");
+                                    var totaltags = container.children.length; // Obtener el número total de pasos y sumar 1
+                                    
+                                    var nuevoPaso = document.createElement("div");
+                                    nuevoPaso.className = "border-bottom rounded";
+                                    
+                                    var nuevoLabel = document.createElement("label");
+                                    nuevoLabel.textContent = "Tag " + totaltags;
+                                    nuevoLabel.style.paddingRight = "25px";
+                                    
+                                    var nuevaInput = document.createElement("input");
+                                    nuevaInput.type = "text";
+                                    nuevaInput.placeholder = "Ingresa el tag...";
+                                    nuevaInput.name = "tags[]";
+                                    nuevaInput.id="tag"+totaltags;
+                                    nuevaInput.className = "form-control border-0 me-4";
+                                    
+                                    nuevoPaso.appendChild(nuevoLabel);
+                                    nuevoPaso.appendChild(nuevaInput);
+                                    
+                                    container.appendChild(nuevoPaso);
+                                });
+                            </script>
+
+                            <br>
+
+                            <nav>
+                                <div class="nav nav-tabs mb-3">
+                                </div>
+                            </nav>
+
                             <input type="submit" value="Enviar" class="btn border border-secondary text-primary rounded-pill px-4 py-3">
                     </div>
                 </form>
             </div>
-            
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
         </div>
     </div>
 </div>
