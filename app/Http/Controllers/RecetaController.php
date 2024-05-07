@@ -21,8 +21,9 @@ class RecetaController extends Controller
     public function index()
     {
         //$recipe=Auth::user()->recetas;
-        $recipe=Receta::all();
-        return view('recetas.index',compact('recipe'));
+        $recipe=Auth::user()->recetas;
+        //return view('recetas.index',compact('recipe'));
+        return view('recetas.misRecetas',compact('recipe'));
     }
 
     /**
@@ -64,6 +65,7 @@ class RecetaController extends Controller
         foreach ($request->ingrediente as $ingredient){
             $receta->ingredients()->create(['ingredient' => $ingredient]);
         }
+        return redirect()->route('receta.index');
     }
 
     /**
@@ -77,17 +79,45 @@ class RecetaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Receta $receta)
+    public function edit($receta)
     {
-        //
+        $recipe=Receta::findOrFail($receta);
+        return view('recetas.editRecipe',compact('recipe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Receta $receta)
+    public function update(Request $request, $receta)
     {
-        //
+        $recipe=Receta::findOrFail($receta);
+        $request->validate([
+            'title'=>'required|max:255',
+            'visibility'=>'required',
+            'text'=>'required|max:300',
+        ]);
+        $recipe->title_recipe=$request->title;
+        $recipe->descrip_recipe=$request->text;
+        $recipe->privacy=$request->visibility;
+        
+        $recipe->save();
+
+        $recipe->instructions()->delete();
+        $recipe->tags()->delete();
+        $recipe->ingredients()->delete();
+
+        foreach ($request->instruc as $instruccion){
+            $recipe->instructions()->create(['instruccion' => $instruccion]);
+        }
+
+        foreach ($request->tags as $tag){
+            $recipe->tags()->create(['tag' => $tag]);
+        }
+
+        foreach ($request->ingrediente as $ingredient){
+            $recipe->ingredients()->create(['ingredient' => $ingredient]);
+        }
+        return redirect()->route('receta.index');
     }
 
     /**
