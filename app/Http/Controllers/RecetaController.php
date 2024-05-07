@@ -44,6 +44,7 @@ class RecetaController extends Controller
             'text'=>'required|max:300',
         ]);
         
+        $cliente=User::findOrFail(Auth::id());
         $receta=new Receta();
         $receta->user_id=Auth::id();
         $receta->title_recipe=$request->title;

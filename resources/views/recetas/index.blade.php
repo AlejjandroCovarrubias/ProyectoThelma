@@ -25,9 +25,6 @@
                         </div>
                         <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                         <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                        
-
-
                         <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Añadir a Favoritos</a>
                     </div>
 
@@ -54,88 +51,106 @@
 
                     </div>
 
-
                     <nav>
                         <div class="nav nav-tabs mb-3">
                         </div>
                     </nav>
-                    <form action="#">
-                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
-                        <div class="row g-4">
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email *">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="border-bottom rounded my-4">
-                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                                </div>
-                            </div>
 
-                            <nav>
-                                <div class="nav nav-tabs mb-3">
-                                    <h4 class="mb-5 fw-bold">Reviews</h4>
+                    <form action="{{route('comentario.store')}}" method="POST" class="col-lg-12">
+                        @csrf
+                        <h4 class="mb-5 fw-bold">Añade un comentario</h4>
+                        <div class="border-bottom rounded my-4">
+                            <textarea name="comentario" id="comentario" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
+                        </div>
+
+                        <h4 class="mb-3 fw-bold">Valoración:</h4>
+                        <p class="clasificacion">
+                            <input id="radio1" type="radio" name="estrellas" value="1" class="d-none"/>
+                            <label for="radio1"><i class="fa fa-star text-secondary"></i></label>
+                            <input id="radio2" type="radio" name="estrellas" value="2" class="d-none"/>
+                            <label for="radio2"><i class="fa fa-star text-secondary"></i></label>
+                            <input id="radio3" type="radio" name="estrellas" value="3" class="d-none"/>
+                            <label for="radio3"><i class="fa fa-star text-secondary"></i></label>
+                            <input id="radio4" type="radio" name="estrellas" value="4" class="d-none"/>
+                            <label for="radio4"><i class="fa fa-star text-secondary"></i></label>
+                            <input id="radio5" type="radio" name="estrellas" value="5" class="d-none"/>
+                            <label for="radio5"><i class="fa fa-star text-secondary"></i></label>
+                        </p>
+
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                        </div>
+                    </form>
+                
+                    <nav>
+                        <div class="nav nav-tabs mb-3">
+                            <h4 class="mb-5 fw-bold">Comentario</h4>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                            </nav>
-                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                                <div class="d-flex">
-                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>Jason Smith</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                            @endif   
+                        </div>
+                    </nav>
+                    <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                        <div class="d-flex">
+                            <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                            <div class="">
+                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                <div class="d-flex justify-content-between">
+                                    <h5>Jason Smith</h5>
+                                    <div class="d-flex mb-3">
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>Sam Peters</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                            <div class="">
+                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                <div class="d-flex justify-content-between">
+                                    <h5>Sam Peters</h5>
+                                    <div class="d-flex mb-3">
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star text-secondary"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
                                 </div>
-                            </div>
-
+                                <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                             @foreach ($recipe as $recipe)
                                 <p><a href="{{ route('receta.show', $recipe) }}">Detalle</a></p>
                             @endforeach
-
-
-
-                            
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
 <!-- Single Product End -->
+<script>
+document.querySelectorAll('.clasificacion input').forEach(input => {
+    input.addEventListener('change', function() {
+        let clickedRating = this.value;
+        document.querySelectorAll('.clasificacion label i').forEach((icon, index) => {
+            icon.className = (index >= clickedRating) ? 'fa fa-star' : 'fa fa-star text-secondary';
+        });
+    });
+});
+</script>
 </x-Layout>

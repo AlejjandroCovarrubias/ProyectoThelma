@@ -28,4 +28,9 @@ class Receta extends Model
     {
         return $this->hasMany(ingredients::class);
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany(comentario::class);
+    }
 }

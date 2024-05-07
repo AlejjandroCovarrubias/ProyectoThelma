@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,5 @@ Route::middleware([
 });
 
 Route::resource('receta', RecetaController::class);
+
+Route::resource('comentario', ComentarioController::class);
