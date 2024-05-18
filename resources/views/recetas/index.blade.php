@@ -17,7 +17,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="fw-bold mb-3">Brocoli</h4>
                             <a href="#" id="favorito-btn" class="btn p-0" style="background:none; border:none;">
-                                 <i class="fa fa-heart text-secondary"></i>
+                                <i class="fa fa-heart text-secondary"></i>
                             </a>
                         </div>
                         <p class="mb-3">Creador: Juan Rios</p>

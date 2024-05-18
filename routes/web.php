@@ -16,10 +16,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/prueba', function () {
     return view('prueba');
 });
@@ -50,4 +46,7 @@ Route::middleware([
 
 Route::resource('receta', RecetaController::class);
 
+Route::get('/', [RecetaController::class, 'landing'])->name('recetas.landing'); 
+
 Route::resource('comentario', ComentarioController::class);
+
