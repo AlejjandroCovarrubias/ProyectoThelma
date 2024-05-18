@@ -16,7 +16,7 @@ class Receta extends Model
 
     public function instructions()
     {
-        return $this->hasMany(instructions::class);
+        return $this->hasMany(Instructions::class);
     }
 
     public function tags()
@@ -26,11 +26,11 @@ class Receta extends Model
 
     public function ingredients()
     {
-        return $this->hasMany(ingredients::class);
+        return $this->hasMany(Ingredients::class);
     }
 
     public function comentarios()
     {
-        return $this->hasMany(comentario::class);
+        return $this->hasMany(Comentario::class);
     }
 }

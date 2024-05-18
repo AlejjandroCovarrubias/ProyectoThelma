@@ -1,4 +1,4 @@
-(function ($) {
+ (function ($) {
     "use strict";
 
     // Spinner
@@ -12,6 +12,7 @@
     spinner(0);
 
     //show menu
+    /*
     var showMenuProfileCustom = function () {
         $('#menu-opciones').fadeIn();
     }
@@ -34,6 +35,24 @@
 
     $('#menu-opciones').mouseenter(showMenuProfileCustom2);
     $('#menu-opciones').mouseleave(hideMenuProfileCustom2);
+*/
+$(document).ready(function() {
+    $('#perfil-icon').click(function(event) {
+        event.stopPropagation();
+        $('#menu-opciones').toggle();
+    });
+
+    $(document).click(function() {
+        $('#menu-opciones').hide();
+    });
+
+    $('.cerrar-menu').click(function() {
+        $('#menu-opciones').hide();
+    });
+});
+
+
+
 
     // Fixed Navbar
     $(window).scroll(function () {
@@ -45,7 +64,7 @@
             }
         } else {
             if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow').css('top', -55);
+                $('.fixed-top').addClass('shadow').css('top', 0); //Antes -55 para mover el navbar hacia arriba
             } else {
                 $('.fixed-top').removeClass('shadow').css('top', 0);
             }
@@ -152,6 +171,39 @@
         })
     });
 
+    $(document).ready(function(){				
+
+        $("#follow-button").click(function(){
+          if ($("#follow-button").text() == "+ Follow"){
+            // *** State Change: To Following ***      
+            // We want the button to squish (or shrink) by 10px as a reaction to the click and for it to last 100ms    
+            $("#follow-button").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
+            
+            // then now we want the button to expand out to it's full state
+            // The left translation is to keep the button centred with it's longer width
+            $("#follow-button").animate({ width: '+=45px', left: '-=15px' }, 600, 'easeInOutBack', function () { 
+              $("#follow-button").css("color", "#fff");
+              $("#follow-button").text("Following");
+      
+              // Animate the background transition from white to green. Using JQuery Color
+              $("#follow-button").animate({
+                backgroundColor: "#2EB82E",
+                borderColor: "#2EB82E"
+              }, 1000 );
+            });
+          }else{
+            
+            // *** State Change: Unfollow ***     
+            // Change the button back to it's original state
+            $("#follow-button").animate({ width: '-=25px', left: '+=15px' }, 600, 'easeInOutBack', function () { 
+              $("#follow-button").text("+ Follow");
+              $("#follow-button").css("color", "#3399FF");
+              $("#follow-button").css("background-color", "#ffffff");
+              $("#follow-button").css("border-color", "#3399FF");
+            });
+          }
+        }); 
+      });
 
 
     // Product Quantity
@@ -171,4 +223,5 @@
     });
 
 })(jQuery);
+
 

@@ -15,14 +15,15 @@ class RecetaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('create');
+        //$this->middleware('auth')->only('create');
+        $this->middleware('auth')->only('create','index');
     }
 
     public function index()
     {
         //$recipe=Auth::user()->recetas;
         $recipe=Auth::user()->recetas;
-        //return view('recetas.index',compact('recipe'));
+        //return view('recetas.index2', compact('recipe'));
         return view('recetas.misRecetas',compact('recipe'));
     }
 
@@ -71,9 +72,13 @@ class RecetaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receta $receta) //testing
+    public function show($id) //testing
     {
-        return view('recetas.mireceta',compact('receta'));
+        $recipe=Receta::findOrFail($id);
+        $cliente=User::findOrFail($recipe->user_id);
+        $average = $recipe->comentarios()->get()->avg('puntuacion');
+        
+        return view('recetas.mireceta',compact('recipe'), compact('cliente'), compact('average'));
     }
 
     /**

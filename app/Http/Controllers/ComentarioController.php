@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\Receta;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -37,14 +40,17 @@ class ComentarioController extends Controller
 
         //Guardamos el comentario
         $comentario = new Comentario();
-        $comentario->user_id = Auth()::id();
+        $comentario->user_id = Auth::id();
         $comentario->receta_id = $request->receta_id;   
         $comentario->comentario = $request->comentario;
         $comentario->puntuacion = $request->estrellas;
-        $comentario->created_at = now();
         $comentario->save();
+
+        $recipe=Receta::findOrFail($comentario->receta_id);
+        $cliente=User::findOrFail($recipe->user_id);
         
-        return redirect()->route('receta.show'); //, $request->receta_id
+        return back();
+        //return redirect()->route('receta.',compact('recipe'),compact('cliente')); //, $request->receta_id ('recetas.mireceta',compact('recipe'),compact('cliente'));
     }
 
     /**
