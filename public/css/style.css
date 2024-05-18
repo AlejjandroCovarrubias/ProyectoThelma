@@ -172,7 +172,7 @@
 .navbar .nav-item:hover .dropdown-menu {
     transform: rotateX(0deg);
     visibility: visible;
-    background: var(--bs-light) !important;
+    /*background: var(--bs-light) !important; */
     border-radius: 10px !important;
     transition: .5s;
     opacity: 1;
@@ -181,6 +181,63 @@
 #searchModal .modal-content {
     background: rgba(255, 255, 255, .8);
 }
+
+/* Estilos de la opcion de busqueda */
+.input {
+    padding: 10px;
+    width: 60px; /* Tamaño inicial */
+    height: 60px;
+    background: none;
+    border: 4px solid #81c408; /* Color de borde normal */
+    border-radius: 50px;
+    margin-right: 35px;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    color: black; /* Color de texto normal */
+    outline: none;
+    transition: width 0.5s, border-radius 0.5s, background 0.5s, border-color 0.5s, color 0.5s; /* Agregado color y border-color a la transición */
+}
+
+.box i {
+    position: absolute;
+    top: 50%;
+    right: 73px;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    transition: opacity 0.2s;
+    opacity: 1;
+}
+
+.input.expanded {
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.box:hover .input, 
+.input:focus, 
+.input:not(:placeholder-shown) {
+    width: 550px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.input:focus {
+    color: black; /* Color de texto cuando está en foco */
+    border-color: #81c408; /* Color de borde cuando está en foco */
+}
+
+.input:not(:focus) {
+    color: rgb(108, 108, 108); /* Color de texto cuando no está en foco */
+    border-color: #b1e27a; /* Color de borde más claro cuando no está en foco */
+}
+/*
+.box:hover i, 
+.input:focus + i {
+    opacity: 0; Descomentar si el icono desaparezca al enfocar 
+}
+*/
 
 /* Estilo general del menú desplegable, más refinado y moderno */
 #menu-opciones {
@@ -191,7 +248,7 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: none; /* oculto por defecto */
     width: 250px;
-    margin-top: 45px;
+    margin-top: 60px;
     z-index: 1000; /* asegúrate de que esté sobre otros elementos */
 }
 
@@ -220,7 +277,7 @@
 #menu-opciones ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-top: 0;
 }
 
 #menu-opciones ul li a {
@@ -574,3 +631,58 @@
 }
 /*** Footer End ***/
 
+/*** others Start ***/
+
+#follow-button {
+    color: #3399FF;
+    font-family: "Helvetica";
+    font-size: 10pt;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #3399FF;
+    border-radius: 3px;
+    width: 85px;
+    height: 30px;
+    position: relative;	 
+    top: 50px;
+    left: 50px;	
+    cursor: hand;		    
+  }
+
+  .icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.icon {
+    font-size: 25px;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.icon:hover {
+    color: red;
+}
+
+.action-icons {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    display: none;
+    position: absolute;
+    left: 40px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.action-icons li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-icons li:hover {
+    background-color: #f0f0f0; /* Más oscuro al pasar el mouse */
+}

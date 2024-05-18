@@ -13,7 +13,18 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
+                            
+                            <div class="icon-container">
+                                <i class="fas fa-heart icon"></i>
+                                <i class="fas fa-share-alt icon" id="share-icon"></i>
+                                <ul class="action-icons" id="action-icons">
+                                    <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
+                                    <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
+                                </ul>
+                            </div>
+                        </div>
                         <p class="mb-3">Creador: {{$cliente->nickname}}</p>
                                 @if($recipe->privacy == "private")
                                     <p class="mb-3"><b>Esta receta es privada.</b></p>
@@ -28,7 +39,6 @@
                                     @endfor
                                 </div>
                         <p class="mb-4">{{$recipe->descrip_recipe}}</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Añadir a Favoritos</a>
                     </div>
 
                     <nav>
@@ -150,5 +160,29 @@ document.querySelectorAll('.clasificacion input').forEach(input => {
     });
 });
 </script>
+<script>
+        document.getElementById('share-icon').onclick = function(event) {
+            var icons = document.getElementById('action-icons');
+            icons.style.display = icons.style.display === 'block' ? 'none' : 'block';
+            event.stopPropagation();
+        };
 
+        document.body.onclick = function() {
+            var icons = document.getElementById('action-icons');
+            if (icons.style.display === 'block') {
+                icons.style.display = 'none';
+            }
+        };
+
+        function copyLink() {
+            navigator.clipboard.writeText('{{url()->current()}}').then(function() {
+            }).catch(function(error) {
+                alert('Error al copiar el enlace');
+            });
+        }
+
+        function downloadContent() {
+            window.location.href = 'url_del_archivo_para_descargar';
+        }
+    </script>
 </x-Layout>

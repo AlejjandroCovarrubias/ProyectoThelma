@@ -26,6 +26,7 @@
 
         <!-- Template Stylesheet -->
         <link href="{{asset('css/style.css')}}" rel="stylesheet"/>
+
     </head>
     <body>
         <!-- Navbar start -->
@@ -38,7 +39,13 @@
                             
                         </div>
                         <div class="d-flex m-3 me-0">
-                            <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>  
+                            <div class="box">
+                                <form name="search">
+                                    <input type="text" class="input" name="txt" placeholder=" " 
+                                        onblur="if(this.value == '') {this.classList.remove('expanded')}">
+                                    <i class="fas fa-search"></i>
+                                </form>
+                            </div>
                             <a href="#" class="my-auto" id="perfil-icon">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
@@ -79,5 +86,8 @@
     
         <!-- Template Javascript -->
         <script src="{{asset('js/main.js')}}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
     </footer>
 </html>
