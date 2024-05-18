@@ -120,7 +120,7 @@
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">{{$comentar->created_at}}</p>
                                         <div class="d-flex justify-content-between">
-                                            <h5 style="padding-right:20px;">Ted Jacobson</h5>
+                                            <h5 style="padding-right:20px;">{{$comentar->user->nickname}}</h5>
                                             <div class="d-flex mb-3 ">
                                                 @for ($i = 0; $i < 5; $i++)
                                                     @if ($i < $comentar->puntuacion)

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Receta;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comentario extends Model
 {
@@ -12,10 +14,10 @@ class Comentario extends Model
 
     //Relacion 1:n inversa
     public function receta(){
-        return $this->belongsTo('Receta::class');
+        return $this->belongsTo(Receta::class);
     }
 
     public function user(){
-        return $this->belongsTo('User::class');
+        return $this->belongsTo(User::class);
     }
 }

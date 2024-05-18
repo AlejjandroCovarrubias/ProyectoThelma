@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -20,23 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/prueba', function () {
-    return view('prueba');
-});
-
 Route::get('/register-profile', function () {
     return view('register-profile');
 });
 
-Route::post('/register', function (Request $request) {
-    return view('register-profile', [
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'nickname' => $request->input('nickname'),
-        'password' => $request->input('password'),
-        'password_confirmation' => $request->input('password_confirmation')
-    ]);
-})->name('register.redirect');
+Route::post('/update', [UsuarioController::class, 'updateJetstream'])->name('usuario.updateJetstream');
+
+Route::get('/myProfile/{usuario}',[UsuarioController::class,'myProfile'])->name('usuario.myProfile');
 
 Route::middleware([
     'auth:sanctum',

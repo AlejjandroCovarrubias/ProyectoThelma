@@ -1,4 +1,4 @@
-<x-Layout titulo="formulario">
+<x-Layout titulo="Crear receta">
 <!-- Single Product Start -->
 <div class="container-fluid py-5 mt-5">
     <div class="container py-5">
@@ -9,8 +9,19 @@
                             @csrf
                             <div class="col-lg-4">
                                 <div class="border rounded">
-                                    <input type="file" id="picRecipe" name="picRecipe">
+                                    <input type="file" id="picRecipe" name="picRecipe" accept="image/*" onchange="loadFile(event)">
+                                    <script>
+                                        var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                            output.onload = function() {
+                                            URL.revokeObjectURL(output.src) // free memory
+                                            }
+                                        };
+                                    </script>
                                 </div>
+                                <br>
+                                <img id="output" style="max-width: 100%; height: auto;">
                             </div>
                             <div class="col-lg-8">
                                 <p class="mb-3">Creador:{{Auth::user()->nickname}}</p>
@@ -79,12 +90,7 @@
 
                             <br>
 
-                            <nav>
-                                <div class="nav nav-tabs mb-3">
-                                </div>
-                            </nav>
-
-                            <div class="col-lg-7">
+                            <div class="col-lg-7" style="padding-left: 200px;">
                                 <h4 class="fw-bold mb-3">Instrucciones</h4>
                                 <div class="border-bottom rounded" id="instrucciones-container">
                                     <label>Paso 1</label>
