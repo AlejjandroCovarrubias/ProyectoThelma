@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/prueba', function () {
+    return view('prueba');
+});
+
 Route::get('/register-profile', function () {
     return view('register-profile');
 });
@@ -41,4 +45,7 @@ Route::middleware([
 
 Route::resource('receta', RecetaController::class);
 
+Route::get('/', [RecetaController::class, 'landing'])->name('recetas.landing'); 
+
 Route::resource('comentario', ComentarioController::class);
+

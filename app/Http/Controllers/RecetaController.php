@@ -131,4 +131,10 @@ class RecetaController extends Controller
     {
         //
     }
+
+    public function landing() {
+        $recipes=Receta::all();
+
+        return view('recetas.landing',compact('recipes'));
+    }
 }
