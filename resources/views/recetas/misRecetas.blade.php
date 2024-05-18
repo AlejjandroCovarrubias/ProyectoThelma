@@ -34,6 +34,7 @@
                                     @endif
                             @php $contador++; @endphp
                         @endforeach
+                    </div>
                 </div>
             </div>
         </div>
