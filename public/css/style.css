@@ -164,6 +164,93 @@
     }
 }
 
+.icon-container .icon,
+.icon-container .btn-report {
+    color: #6c757d; /* Color gris para todos los iconos */
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    font-size: 20px; /* Tamaño del ícono */
+    transition: color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.icon-container .icon:hover,
+.icon-container .btn-report:hover {
+    color: red; /* Color rojo al pasar el cursor */
+}
+
+.btn-send {
+    background-color: #4CAF50; /* Color verde */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    font-size: 16px; /* Tamaño del texto */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color de fondo */
+}
+
+
+
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed; /* Fijar el modal en la pantalla */
+    z-index: 1000; /* Asegurarse de que el modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo difuminado */
+    justify-content: center; /* Centrar el modal horizontalmente */
+    align-items: center; /* Centrar el modal verticalmente */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slide-down 0.3s ease-out;
+    position: relative; /* Necesario para posicionar la "X" dentro del modal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    position: absolute; /* Posicionar absolutamente dentro del modal */
+    top: 10px; /* Ajustar según sea necesario */
+    left: 10px; /* Ajustar según sea necesario */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#motivo {
+    width: 100%; /* Asegurar que el textarea ocupe todo el ancho disponible */
+    display: block; /* Asegurar que se comporte como un bloque */
+    margin-top: 10px; /* Añadir espacio entre el título y el textarea */
+}
+
+
 .dropdown .dropdown-menu a:hover {
     background: var(--bs-secondary);
     color: var(--bs-primary);
