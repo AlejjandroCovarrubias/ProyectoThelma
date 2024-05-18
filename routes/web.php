@@ -17,13 +17,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/prueba', function () {
-    return view('prueba');
-});
 
 Route::get('/register-profile', function () {
     return view('register-profile');
