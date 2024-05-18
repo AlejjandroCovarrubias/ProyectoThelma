@@ -1,10 +1,4 @@
 <x-Layout titulo="Prueba">
-
-
-
-    <!-- Single Product Start -->
-
-
 <div class="container-fluid py-5 mt-5">
 <div class="container-fluid py-5 mt-5">
     <div class="container py-5">
@@ -24,13 +18,15 @@
                                 @if($recipe->privacy == "private")
                                     <p class="mb-3"><b>Esta receta es privada.</b></p>
                                 @endif
-                        <div class="d-flex mb-4">
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
+                                <div class="d-flex mb-3 ">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $recipe->comentarios()->get()->avg('puntuacion')+0.49) <!--Para que se vaya al siguiente entero  a partir del x.51-->
+                                            <i class="fa fa-star text-secondary"></i> 
+                                        @else
+                                            <i class="fa fa-star"></i>
+                                        @endif
+                                    @endfor
+                                </div>
                         <p class="mb-4">{{$recipe->descrip_recipe}}</p>
                         <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Añadir a Favoritos</a>
                     </div>
@@ -120,7 +116,7 @@
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">{{$comentar->created_at}}</p>
                                         <div class="d-flex justify-content-between">
-                                            <h5 style="padding-right:20px;">Ted Jacobson</h5>
+                                            <h5 style="padding-right:20px;">{{$comentar->user->nickname}}</h5>
                                             <div class="d-flex mb-3 ">
                                                 @for ($i = 0; $i < 5; $i++)
                                                     @if ($i < $comentar->puntuacion)

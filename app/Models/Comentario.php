@@ -12,10 +12,10 @@ class Comentario extends Model
 
     //Relacion 1:n inversa
     public function receta(){
-        return $this->belongsTo('Receta::class');
+        return $this->belongsTo(Receta::class);
     }
 
     public function user(){
-        return $this->belongsTo('User::class');
+        return $this->belongsTo(User::class);
     }
 }

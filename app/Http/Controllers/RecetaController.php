@@ -15,7 +15,8 @@ class RecetaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('create');
+        //$this->middleware('auth')->only('create');
+        $this->middleware('auth')->only('create','index');
     }
 
     public function index()
@@ -75,8 +76,9 @@ class RecetaController extends Controller
     {
         $recipe=Receta::findOrFail($id);
         $cliente=User::findOrFail($recipe->user_id);
+        $average = $recipe->comentarios()->get()->avg('puntuacion');
         
-        return view('recetas.mireceta',compact('recipe'), compact('cliente'));
+        return view('recetas.mireceta',compact('recipe'), compact('cliente'), compact('average'));
     }
 
     /**

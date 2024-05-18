@@ -78,13 +78,9 @@
                             </script>
 
                             <br>
+                            <br>
 
-                            <nav>
-                                <div class="nav nav-tabs mb-3">
-                                </div>
-                            </nav>
-
-                            <div class="col-lg-7">
+                            <div class="col-lg-5">
                                 <h4 class="fw-bold mb-3">Instrucciones</h4>
                                 <div class="border-bottom rounded" id="instrucciones-container">
                                     <label>Paso 1</label>
