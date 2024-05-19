@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 */
 
 
+
+
+
 Route::get('/register-profile', function () {
     return view('register-profile');
 });
