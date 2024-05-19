@@ -30,6 +30,10 @@ Route::post('/follow', [UsuarioController::class,'follow'])->name('usuario.follo
 
 Route::post('/unfollow', [UsuarioController::class,'unfollow'])->name('usuario.unfollow');
 
+Route::get('/fav/{id}', [UsuarioController::class,'fav'])->name('usuario.fav');
+
+Route::get('/unfav/{id}', [UsuarioController::class,'unfav'])->name('usuario.unfav');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

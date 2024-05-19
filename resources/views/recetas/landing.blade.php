@@ -1,12 +1,6 @@
 <x-Layout titulo="C-COCINO">
 
     <div style="background-color: #f8f9fa; padding: 20px; text-align: center;">
-        <h1 style="margin-bottom: 15px; font-size: 24px; font-weight: 800;">C-COCINO</h1>
-        <p>Tu página web de recetas favorita</p>
-        <form action="#" method="GET">
-            <input type="text" name="search" placeholder="Buscar receta" style="padding: 10px; width: 50%; margin-top: 20px;">
-            <button type="submit" style="background-color: orange; padding: 10px 20px; margin-left: 10px;">Buscar</button>
-        </form>
     </div>
 
     <!-- Fruits Shop Start-->
@@ -15,26 +9,23 @@
             <div class="tab-class text-center">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start">
-                        <h1>Recetas recientes</h1>
+                        <h1>Recetas</h1>
                     </div>
                     <div class="col-lg-8 text-end">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
                             <!-- Opciones de filtrado de productos-->
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                    <span class="text-dark" style="width: 130px;">FYP</span>
+                                    <span class="text-dark" style="width: 130px;">Global</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                    <span class="text-dark" style="width: 130px;">SIGUIENDO</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                    <span class="text-dark" style="width: 130px;">GLOBAL</span>
-                                </a>
-                            </li>
+                            @if(Auth::user())
+                                <li class="nav-item">
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                                        <span class="text-dark" style="width: 130px;">Siguiendo</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

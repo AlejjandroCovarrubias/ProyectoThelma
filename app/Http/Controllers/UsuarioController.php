@@ -12,10 +12,17 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only('follow','unfollow','fav','unfav');
+    }
+ 
     public function myProfile($id)
     {
         $usuario=User::findOrFail($id);
-        return view('user.myprofile',compact('usuario'));
+        $recetasFav=$usuario->favoriteRecipes()->get();
+        return view('user.myprofile',compact('usuario','recetasFav'));
     }
 
     public function updateJetstream(Request $request)
@@ -92,6 +99,20 @@ class UsuarioController extends Controller
     {
         $user=Auth::user();
         $user->following()->detach($request->id);
+        return back();
+    }
+
+    public function fav($id)
+    {
+        $user=Auth::user();
+        $user->favoriteRecipes()->attach($id);
+        return back();
+    }
+
+    public function unfav($id)
+    {
+        $user=Auth::user();
+        $user->favoriteRecipes()->detach($id);
         return back();
     }
 

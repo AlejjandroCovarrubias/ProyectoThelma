@@ -81,8 +81,9 @@ class RecetaController extends Controller
             $this->authorize('verPriv',$recipe);
         $cliente=User::findOrFail($recipe->user_id);
         $average = $recipe->comentarios()->get()->avg('puntuacion');
+        $esFavorito = Auth::user() ? Auth::user()->favoriteRecipes()->where('recipe_id',$id)->exists() : false;
         
-        return view('recetas.mireceta',compact('recipe'), compact('cliente'), compact('average'));
+        return view('recetas.mireceta',compact('recipe', 'cliente', 'average', 'esFavorito'));
     }
 
     /**
@@ -145,8 +146,13 @@ class RecetaController extends Controller
 
     public function landing() {
         $recipes=Receta::all()->where('privacy','public'); // todas las recetas publicas
-        $pluck_user=Auth::user()->following->pluck('id');
-        $recipes_following=Receta::WhereIn('user_id',$pluck_user)->get();
+        $recipes_following=collect();
+        if(Auth::user())
+        {
+            $pluck_user=Auth::user()->following->pluck('id');
+            $recipes_following=Receta::WhereIn('user_id',$pluck_user)->get()->where('privacy','public');
+            return view('recetas.landing',compact('recipes'),compact('recipes_following'));
+        }
         return view('recetas.landing',compact('recipes'),compact('recipes_following'));
     }
 
@@ -167,4 +173,6 @@ class RecetaController extends Controller
 
         return view('search.search',compact('recetasResultado', 'ingredientesResultado', 'tagsResu'));
     }
+
+    
 }

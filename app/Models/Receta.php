@@ -34,4 +34,9 @@ class Receta extends Model
     {
         return $this->hasMany(Comentario::class);
     }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class,'user_receta','recipe_id','user_id');
+    }
 }

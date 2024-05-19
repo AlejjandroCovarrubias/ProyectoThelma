@@ -22,18 +22,22 @@
                                     @endif
                                 </div>
                                 <div class="input-group quantity mb-5" style="width: 100px;">
-                                    @if(Auth::check() && !Auth::user()->following->contains($usuario->id))
-                                        <form action="{{route('usuario.follow')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
-                                            <input type="submit" value="Seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
-                                        </form>
-                                    @else
-                                        <form action="{{route('usuario.unfollow')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
-                                            <input type="submit" value="Dejar de seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
-                                        </form>
+                                    @if(Auth::check())
+                                        @if(Auth::user()->id!=$usuario->id)
+                                            @if(Auth::check() && !Auth::user()->following->contains($usuario->id))
+                                                <form action="{{route('usuario.follow')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
+                                                    <input type="submit" value="Seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
+                                                </form>
+                                            @else
+                                                <form action="{{route('usuario.unfollow')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
+                                                    <input type="submit" value="Dejar de seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
+                                                </form>
+                                            @endif
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -52,6 +56,11 @@
                                             <button class="nav-link border-white border-bottom-0" type="button" role="tab"
                                             id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
                                             aria-controls="nav-mission" aria-selected="false">Configuraciones</button>
+                                        @endcan
+                                        @can('verConfiguraciones',$usuario)
+                                            <button class="nav-link border-white border-bottom-0" type="button" role="tab"
+                                            id="nav-fav-tab" data-bs-toggle="tab" data-bs-target="#nav-fav"
+                                            aria-controls="nav-fav" aria-selected="false">Recetas en favorito</button>
                                         @endcan
                                     </div>
                                 </nav>
@@ -193,6 +202,40 @@
                                             <div class="row g-4 justify-content-center">
                                             @php $contador = 0; @endphp
                                                     @foreach($usuario->recetas->where('privacy','public') as $recipe)
+                                                            @if($contador % 2 == 0)
+                                                                <div class="col-md-6 col-lg-6 col-xl-4">
+                                                                    <div class="fruite-img">
+                                                                        <a href="{{route('receta.show',$recipe)}}">
+                                                                            <img src="{{ asset('storage/' . $recipe->ubiFotoReceta) }}" width="415" height="200" class="img-fluid w-100 rounded-top"> 
+                                                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                                                <h4>{{$recipe->title_recipe}}</h4>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                            @if($contador % 2 == 1)
+                                                                <div class="col-md-6 col-lg-6 col-xl-4">
+                                                                    <div class="fruite-img">
+                                                                        <a href="{{route('receta.show',$recipe)}}">
+                                                                            <img src="{{ asset('storage/' . $recipe->ubiFotoReceta) }}" width="415" height="200" class="img-fluid w-100 rounded-top"> 
+                                                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                                                <h4>{{$recipe->title_recipe}}</h4>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                    @php $contador++; @endphp
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="nav-fav" role="tabpanel" aria-labelledby="nav-fav-tab">
+                                        <div class="col-lg-12">
+                                            <div class="row g-4 justify-content-center">
+                                                @php $contador = 0; @endphp
+                                                    @foreach($recetasFav as $recipe)
                                                             @if($contador % 2 == 0)
                                                                 <div class="col-md-6 col-lg-6 col-xl-4">
                                                                     <div class="fruite-img">
