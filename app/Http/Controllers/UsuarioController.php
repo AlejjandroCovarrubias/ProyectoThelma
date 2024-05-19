@@ -81,4 +81,18 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function follow(Request $request)
+    {
+        $user=Auth::user();
+        $user->following()->attach($request->id);
+        return back();
+    }
+
+    public function unfollow(Request $request)
+    {
+        $user=Auth::user();
+        $user->following()->detach($request->id);
+        return back();
+    }
+
 }

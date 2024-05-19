@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)
+        User::factory(3)
         ->has(Receta::factory()
-        ->has(Ingredients::factory()->count(5))
-        ->has(Instructions::factory()->count(10))
-        ->has(Tags::factory()->count(3))
+        ->has(Ingredients::factory()->count(3))
+        ->has(Instructions::factory()->count(4))
+        ->has(Tags::factory()->count(2))
         //->has(Comentario::factory()->count(3))
-        ->count(3))
+        ->count(2))
         ->create();
         
         User::factory()->create([
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         $recetas = Receta::all();
         foreach($recetas as $receta){
-            Comentario::factory(3)->for($receta)->create();
+            Comentario::factory(2)->for($receta)->create();
         }
 
         /*

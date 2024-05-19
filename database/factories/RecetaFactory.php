@@ -20,8 +20,8 @@ class RecetaFactory extends Factory
             'title_recipe' => fake()->sentence(),
             'descrip_recipe' => fake()->paragraph(2),
             'privacy' => fake()->randomElement(['public', 'private']),
-            //'ubiFotoReceta'=>$this->faker->image('public/storage/',600,480,null,false),
-            //'mimeFotoReceta'=>'image/png',
+            'ubiFotoReceta'=>$this->faker->image('public/storage/',600,480,null,false),
+            'mimeFotoReceta'=>'image/png',
         ];
     }
 }

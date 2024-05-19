@@ -33,15 +33,15 @@
         <div class="container-fluid fixed-top">
             <div class="container px-0">
                 <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                    <a href="index.html" class="navbar-brand"><img src="{{asset('img/c-cocino.png')}}" width="65" height="65"/></a> 
+                    <a href="/" class="navbar-brand"><img src="{{asset('img/c-cocino.png')}}" width="65" height="65"/></a> 
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                             
                         </div>
                         <div class="d-flex m-3 me-0">
                             <div class="box">
-                                <form name="search">
-                                    <input type="text" class="input" name="txt" placeholder=" " 
+                                <form name="search" action="{{route('recetas.search')}}" method="GET">
+                                    <input type="text" class="input" id="query" name="query" placeholder=" " 
                                         onblur="if(this.value == '') {this.classList.remove('expanded')}">
                                     <i class="fas fa-search"></i>
                                 </form>
@@ -49,18 +49,30 @@
                             <a href="#" class="my-auto" id="perfil-icon">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
-                            <div id="menu-opciones" class="oculto">
-                                <div class="perfil-info">
-                                    <img src="path_to_avatar.jpg" alt="Avatar" class="avatar"> <!-- Cambia path_to_avatar.jpg a tu imagen -->
-                                    <div><span class="nickname">Nickname</span></div> <!-- Cambia Nickname al nombre real -->
-                                    <div><span class="user-id">@username</span></div> <!-- Cambia @username al nombre de usuario -->
+                            @if(Auth::check())
+                                <div id="menu-opciones" class="oculto">
+                                    <div class="perfil-info">
+                                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path ) }}" alt="Avatar" class="avatar"> <!-- Cambia path_to_avatar.jpg a tu imagen -->
+                                        <div><span class="nickname">{{Auth::user()->nickname}}</span></div> <!-- Cambia Nickname al nombre real -->
+                                        <div><span class="user-id">@ {{Auth::user()->name}}</span></div> <!-- Cambia @username al nombre de usuario -->
+                                    </div>
+                                    <ul>
+                                        <li><a href="{{route('usuario.myProfile',Auth::user()->id)}}">Tu perfil</a></li>
+                                        <li><a href="{{route('receta.index')}}"></i> Mis recetas</a></li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault(); this.closest('form').submit(); document.getElementById('logout').submit();">Cerrar sesion</a></li>
+                                        </form>
+                                    </ul>
                                 </div>
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-user"></i> Tu perfil</a></li>
-                                    <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
-                                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
-                                </ul>
-                            </div>
+                            @else
+                                <div id="menu-opciones" class="oculto">
+                                    <ul>
+                                        <li><a href="{{route('register')}}"><i class="fas fa-user"></i>Registrarse</a></li>
+                                        <li><a href="{{route('login')}}"><i class="fas fa-user"></i>Iniciar sesión</a></li>
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </nav>

@@ -22,7 +22,19 @@
                                     @endif
                                 </div>
                                 <div class="input-group quantity mb-5" style="width: 100px;">
-                                    <!-- Aqui debe de ir el boton de follow -->
+                                    @if(Auth::check() && !Auth::user()->following->contains($usuario->id))
+                                        <form action="{{route('usuario.follow')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
+                                            <input type="submit" value="Seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
+                                        </form>
+                                    @else
+                                        <form action="{{route('usuario.unfollow')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{$usuario->id}}" id="id" name="id">
+                                            <input type="submit" value="Dejar de seguir" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> <!-- Cambiar por el boton que van a hacer -->   
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -173,7 +185,7 @@
                                                     </ul>
                                                 </div>
                                             @endif
-                                            <input type="submit" value="Enviar" class="site-btn sb-c2">
+                                            <input type="submit" value="Enviar" class="btn border border-secondary text-primary rounded-pill px-4 py-3">
                                         </form>
                                     </div>       
                                     <div class="tab-pane" id="nav-priv-recipes" role="tabpanel" aria-labelledby="nav-priv-recipes">

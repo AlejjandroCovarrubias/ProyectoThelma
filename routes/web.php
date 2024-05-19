@@ -26,6 +26,10 @@ Route::post('/update', [UsuarioController::class, 'updateJetstream'])->name('usu
 
 Route::get('/myProfile/{usuario}',[UsuarioController::class,'myProfile'])->name('usuario.myProfile');
 
+Route::post('/follow', [UsuarioController::class,'follow'])->name('usuario.follow');
+
+Route::post('/unfollow', [UsuarioController::class,'unfollow'])->name('usuario.unfollow');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -38,7 +42,11 @@ Route::middleware([
 
 Route::resource('receta', RecetaController::class);
 
-Route::get('/', [RecetaController::class, 'landing'])->name('recetas.landing'); 
+Route::resource('usuario', UsuarioController::class);
+
+Route::get('/', [RecetaController::class, 'landing'])->name('recetas.landing');
+
+Route::get('/search', [RecetaController::class, 'search'])->name('recetas.search');
 
 Route::resource('comentario', ComentarioController::class);
 

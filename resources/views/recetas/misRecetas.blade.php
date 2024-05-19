@@ -14,7 +14,11 @@
                                                     <h4>{{$recipe->title_recipe}}</h4>
                                                     <a href="{{route('receta.edit', $recipe)}}" class="btn border border-secondary rounded-pill px-3 text-primary">Editar</a>
                                                     <a href="{{route('receta.show', $recipe)}}" class="btn border border-secondary rounded-pill px-3 text-primary">Ver</a>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar</a> 
+                                                    <form action="{{ route('receta.destroy',$recipe->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar</button> <!-- Alinear el boton -->
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -27,7 +31,11 @@
                                                     <h4>{{$recipe->title_recipe}}</h4>
                                                     <a href="{{route('receta.edit', $recipe)}}" class="btn border border-secondary rounded-pill px-3 text-primary">Editar</a>
                                                     <a href="{{route('receta.show', $recipe)}}" class="btn border border-secondary rounded-pill px-3 text-primary">Ver</a>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar</a> 
+                                                    <form action="{{ route('receta.destroy',$recipe->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar</button> <!-- Alinear el boton -->
+                                                    </form> 
                                                 </div>
                                             </div>
                                         </div>

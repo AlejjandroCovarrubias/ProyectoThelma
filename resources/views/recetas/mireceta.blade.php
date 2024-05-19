@@ -1,31 +1,30 @@
 <x-Layout titulo="Prueba">
-    <div class="container-fluid py-5 mt-5">
-        <div class="container-fluid py-5 mt-5">
-            <div class="container py-5">
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-12">
-                        <div class="row g-4">
-                            <div class="col-lg-4">
-                                <div class="border rounded">
-                                    <a href="#">
-                                        <img src="img/single-item.jpg" class="img-fluid rounded" alt="Image">
-                                    </a>
-                                </div>
+<div class="container-fluid py-5 mt-5">
+<div class="container-fluid py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="border rounded">
+                            <img src="{{asset('storage/' . $recipe->ubiFotoReceta)}}" class="img-fluid rounded" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
+                            
+                            <div class="icon-container">
+                                <i class="fas fa-heart icon"></i>
+                                <i class="fas fa-share-alt icon" id="share-icon"></i>
+                                <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
+                                <ul class="action-icons" id="action-icons">
+                                    <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
+                                    <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
+                                </ul>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
-                                    <div class="icon-container">
-                                        <i class="fas fa-heart icon"></i>
-                                        <i class="fas fa-share-alt icon" id="share-icon"></i>
-                                        <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
-                                        <ul class="action-icons" id="action-icons">
-                                            <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
-                                            <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <p class="mb-3">Creador: {{$cliente->nickname}}</p>
+                        </div>
+                        <a href="{{route('usuario.myProfile',$cliente->id)}}"><p class="mb-3">Creador: {{$cliente->nickname}}</p></a>
                                 @if($recipe->privacy == "private")
                                 <p class="mb-3"><b>Esta receta es privada.</b></p>
                                 @endif
@@ -121,7 +120,7 @@
                             @foreach($recipe->comentarios()->get() as $comentar)
                             <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                                 <div class="d-flex">
-                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <img src="{{asset('storage/' . $comentar->user->profile_photo_path)}}" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">{{$comentar->created_at}}</p>
                                         <div class="d-flex justify-content-between">

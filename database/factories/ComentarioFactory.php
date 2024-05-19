@@ -17,7 +17,7 @@ class ComentarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' =>fake()->numberBetween(1, 11),
+            'user_id' =>fake()->numberBetween(1, 4),
             'comentario' => fake()->sentence(),
             'puntuacion' =>fake()->numberBetween(0, 5)
         ];

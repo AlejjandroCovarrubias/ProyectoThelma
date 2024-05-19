@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -68,4 +69,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Receta::class);
     }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class,'user_user','follower_id','user_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'user_user','user_id','follower_id');
+    }
+
 }
