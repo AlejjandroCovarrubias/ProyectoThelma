@@ -47,7 +47,6 @@ class RecetaController extends Controller
             'visibility'=>'required',
             'text'=>'required|max:300',
         ]);
-        $this->authorize('store',Auth::id());
         $cliente=User::findOrFail(Auth::id());
         $receta=new Receta();
         $receta->user_id=Auth::id();
