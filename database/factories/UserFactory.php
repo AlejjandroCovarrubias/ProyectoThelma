@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'instagramID'=> $this->faker->userName(),
             'facebookID'=> $this->faker->userName(),
             'remember_token' => Str::random(10),
-            'profile_photo_path' => $this->faker->image('public/storage/profile-photos/',600,480,null,false),
+            //'profile_photo_path' => $this->faker->image('public/storage/profile-photos/',600,480,null,false),
             'current_team_id' => null,
         ];
     }

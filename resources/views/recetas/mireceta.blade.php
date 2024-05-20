@@ -53,13 +53,7 @@
                                     @foreach($recipe->ingredients as $ingredientes)
                                     <li>{{$ingredientes->ingredient}}</li>
                                     @endforeach
-                                    <!--<li>Primer Ingrediente</li>
-                            <li>Segundo Ingrediente</li>
-                            <li>Tercer Ingrediente</li>
-                            <li>Cuarto Ingrediente</li>
-                            <li>Quinto Ingrediente</li>
-                            <li>Sexto Ingrediente</li>-->
-                                </ol>
+                                        </ol>
 
                             </div>
                             <div class="col-lg-7">
@@ -69,10 +63,7 @@
                                     <li>{{$instrucciones->instruccion}}</li>
                                     @endforeach
                                 </ol>
-                                <!-- <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
-                        <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
--->
-                            </div>
+                                     </div>
 
 
                             <nav>

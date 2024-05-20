@@ -49,7 +49,7 @@
                                             aria-controls="nav-about" aria-selected="true">Recetas</button>
                                         @can('verConfiguraciones',$usuario)
                                             <button class="nav-link border-white border-bottom-0" type="button" role="tab"
-                                            id="nav-priv-recipes" data-bs-toggle="tab" data-bs-target="#nav-priv-recipes"
+                                            id="nav-priv-recipes-tab" data-bs-toggle="tab" data-bs-target="#nav-priv-recipes"
                                             aria-controls="nav-priv-recipes" aria-selected="false">Mis recetas privadas</button>
                                         @endcan
                                         @can('verConfiguraciones',$usuario)
@@ -197,11 +197,11 @@
                                             <input type="submit" value="Enviar" class="btn border border-secondary text-primary rounded-pill px-4 py-3">
                                         </form>
                                     </div>       
-                                    <div class="tab-pane" id="nav-priv-recipes" role="tabpanel" aria-labelledby="nav-priv-recipes">
+                                    <div class="tab-pane" id="nav-priv-recipes" role="tabpanel" aria-labelledby="nav-priv-recipes-tab">
                                     <div class="col-lg-12">
                                             <div class="row g-4 justify-content-center">
                                             @php $contador = 0; @endphp
-                                                    @foreach($usuario->recetas->where('privacy','public') as $recipe)
+                                                    @foreach($usuario->recetas->where('privacy','private') as $recipe)
                                                             @if($contador % 2 == 0)
                                                                 <div class="col-md-6 col-lg-6 col-xl-4">
                                                                     <div class="fruite-img">

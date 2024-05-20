@@ -88,8 +88,6 @@
                                 });
                             </script>
 
-                            <br>
-
                             <div class="col-lg-7" style="padding-left: 200px;">
                                 <h4 class="fw-bold mb-3">Instrucciones</h4>
                                 <div class="border-bottom rounded" id="instrucciones-container">

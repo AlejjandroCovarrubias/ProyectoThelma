@@ -24,29 +24,18 @@ class DatabaseSeeder extends Seeder
         ->has(Ingredients::factory()->count(3))
         ->has(Instructions::factory()->count(4))
         ->has(Tags::factory()->count(2))
-        //->has(Comentario::factory()->count(3))
         ->count(2))
         ->create();
         
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'moderador' =>true,
         ]);
 
-        $recetas = Receta::all();
+        $recetas = Receta::all()->where('privacy','public');
         foreach($recetas as $receta){
             Comentario::factory(2)->for($receta)->create();
         }
-
-        /*
-        User::factory(10)
-            ->has(Comentario::factory()->count(4))
-            ->create();
-
-        /*User::factory(10)
-        ->has(Clase::factory()
-        ->has(Tarea::factory()->count(3))
-        ->count(3), 'mis_clases')
-        ->create();*/
     }
 }
