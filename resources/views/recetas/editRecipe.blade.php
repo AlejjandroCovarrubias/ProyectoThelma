@@ -10,8 +10,18 @@
                         <div class="row g-4">        
                                 <div class="col-lg-4">
                                     <div class="border rounded">
-                                        <input type="file" id="picRecipe" name="picRecipe">
+                                        <input type="file" id="picRecipe" name="picRecipe" accept="image/*" onchange="loadFile(event)">
+                                        <script>
+                                        var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                            output.onload = function() {
+                                            URL.revokeObjectURL(output.src) // free memory
+                                            }
+                                        };
+                                        </script>
                                     </div>
+                                    <img id="output" style="max-width: 100%; height: auto;">
                                 </div>
                                 <div class="col-lg-8">
                                     <p class="mb-3">Creador:{{Auth::user()->nickname}}</p>
