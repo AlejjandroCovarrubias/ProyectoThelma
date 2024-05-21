@@ -81,7 +81,7 @@ class User extends Authenticatable
 
     public function reporteComentario()
     {
-        return $this->belongsToMany(Comentario::class,'user_comentario_repote','user_id','comentario_id','descripcion');
+        return $this->belongsToMany(Comentario::class,'user_comentario_reporte','user_id','comentario_id');
     }
 
     public function following()

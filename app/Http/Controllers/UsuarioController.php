@@ -131,6 +131,7 @@ class UsuarioController extends Controller
     }
     public function bancomentario(Request $request)
     {
+        dd($request);
         $request->validate([
             'descripcion' => 'string|max:255',
         ]);

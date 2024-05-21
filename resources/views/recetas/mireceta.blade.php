@@ -128,6 +128,14 @@
                                                     @endif
                                                     @endfor
                                             </div>
+                                            <div class="icon-container">
+                                                <i class="fa fa-flag me-2 btn-report" id="reporcomentariotBtn" title="Reportar receta" style="text-align:right;"></i>
+                                                <form id="reportForm" action="{{ route('usuario.bancomentario') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $comentar->id }}" id="id" name="id">
+                                                    <input type="hidden" id="descripcion" name="descripcion">
+                                                </form>
+                                            </div>
                                         </div>
                                         <p>{{$comentar->comentario}}</p>
                                     </div>
@@ -163,6 +171,9 @@
         });
 
         document.getElementById('reportBtn').addEventListener('click', function() {
+            document.getElementById('reportModal').style.display = 'flex';
+        });
+        document.getElementById('reporcomentariotBtn').addEventListener('click', function() {
             document.getElementById('reportModal').style.display = 'flex';
         });
 

@@ -22,6 +22,6 @@ class Comentario extends Model
     }
     public function reportadoBy()
     {
-        return $this->belongsToMany(User::class,'user_comentario','comentario_id','user_id');
+        return $this->belongsToMany(User::class,'user_comentario_reporte','comentario_id','user_id');
     }
 }
