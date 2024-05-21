@@ -19,12 +19,27 @@
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                         <div class="mb-2 pb-1">
                           @php $comentario=App\Models\Comentario::findOrFail($reporte->comentario_id) @endphp
-                        <p class="m-0 pb-3">{{App\Models\User::findOrFail($comentario->user_id)->nickname}}</p>
+                          @php $user=App\Models\User::findOrFail($comentario->user_id) @endphp
+                        <p class="m-0 pb-3">{{$user->nickname}}</p>
                             <p class="mb-0">{{ Str::limit ($comentario->comentario, 300, '...') }}</p>
                         </div>
                         <div class="p-1">
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Editar</a>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar</a> 
+                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Pasar</a>
+                            <form action="{{route('usuario.destroyReporteComentario', $reporte->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Pasar" class="btn border border-secondary rounded-pill px-3 text-primary">
+                            </form>
+                            <form action="{{route('comentario.destroy', $comentario)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Eliminar comentario" class="btn border border-secondary rounded-pill px-3 text-primary">
+                            </form>
+                            <form action="{{route('usuario.destroy', $user->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Eliminar cuenta" class="btn border border-secondary rounded-pill px-3 text-primary">
+                            </form>
                         </div>
                     </div>
                 </div>
