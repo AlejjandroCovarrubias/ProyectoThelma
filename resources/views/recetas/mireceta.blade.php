@@ -173,6 +173,7 @@
         document.getElementById('reportBtn').addEventListener('click', function() {
             document.getElementById('reportModal').style.display = 'flex';
         });
+
         document.getElementById('reporcomentariotBtn').addEventListener('click', function() {
             document.getElementById('reportModal').style.display = 'flex';
         });

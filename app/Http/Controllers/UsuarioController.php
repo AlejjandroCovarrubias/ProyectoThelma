@@ -15,7 +15,7 @@ class UsuarioController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('follow','unfollow','fav','unfav');
+        $this->middleware('auth')->only('follow','unfollow','fav','unfav','banreceta','bancomentario');
     }
  
     public function myProfile($id)
@@ -131,7 +131,6 @@ class UsuarioController extends Controller
     }
     public function bancomentario(Request $request)
     {
-        dd($request);
         $request->validate([
             'descripcion' => 'string|max:255',
         ]);
