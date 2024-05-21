@@ -1,39 +1,41 @@
 <x-Layout titulo="Prueba">
-<div class="container-fluid py-5 mt-5">
-<div class="container-fluid py-5 mt-5">
-    <div class="container py-5">
-        <div class="row g-4 mb-5">
-            <div class="col-lg-12">
-                <div class="row g-4">
-                    <div class="col-lg-4">
-                        <div class="border rounded">
-                            <img src="{{asset('storage/' . $recipe->ubiFotoReceta)}}" class="img-fluid rounded" alt="Image">
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
-                            
-                            <div class="icon-container">
-                                @if(!$esFavorito)
-                                    <a href="{{route('usuario.fav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a>
-                                @else
-                                    <a href="{{route('usuario.unfav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a> <!-- Falta cambiar de color el corazon de fav -->
-                                @endif
-                                <i class="fas fa-share-alt icon" id="share-icon"></i>
-                                <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
-                                <form id="reportForm" action="{{ route('usuario.banreceta') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $recipe->id }}" id="id" name="id">
-                                    <input type="hidden" id="descripcion" name="descripcion">
-                                </form>
-                                <ul class="action-icons" id="action-icons">
-                                    <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
-                                    <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
-                                </ul>
+    <div class="container-fluid py-5 mt-5">
+        <div class="container-fluid py-5 mt-5">
+            <div class="container py-5">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-12">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="border rounded">
+                                    <img src="{{asset('storage/' . $recipe->ubiFotoReceta)}}" class="img-fluid rounded" alt="Image">
+                                </div>
                             </div>
-                        </div>
-                        <a href="{{route('usuario.myProfile',$cliente->id)}}"><p class="mb-3">Creador: {{$cliente->nickname}}</p></a>
+                            <div class="col-lg-8">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="fw-bold mb-3">{{$recipe->title_recipe}}</h4>
+
+                                    <div class="icon-container">
+                                        @if(!$esFavorito)
+                                        <a href="{{route('usuario.fav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a>
+                                        @else
+                                        <a href="{{route('usuario.unfav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a> <!-- Falta cambiar de color el corazon de fav -->
+                                        @endif
+                                        <i class="fas fa-share-alt icon" id="share-icon"></i>
+                                        <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
+                                        <form id="reportForm" action="{{ route('usuario.banreceta') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{ $recipe->id }}" id="id" name="id">
+                                            <input type="hidden" id="descripcion" name="descripcion">
+                                        </form>
+                                        <ul class="action-icons" id="action-icons">
+                                            <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
+                                            <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="{{route('usuario.myProfile',$cliente->id)}}">
+                                    <p class="mb-3">Creador: {{$cliente->nickname}}</p>
+                                </a>
                                 @if($recipe->privacy == "private")
                                 <p class="mb-3"><b>Esta receta es privada.</b></p>
                                 @endif
@@ -58,7 +60,7 @@
                                     @foreach($recipe->ingredients as $ingredientes)
                                     <li>{{$ingredientes->ingredient}}</li>
                                     @endforeach
-                                        </ol>
+                                </ol>
 
                             </div>
                             <div class="col-lg-7">
@@ -68,7 +70,7 @@
                                     <li>{{$instrucciones->instruccion}}</li>
                                     @endforeach
                                 </ol>
-                                     </div>
+                            </div>
 
 
                             <nav>
@@ -117,36 +119,41 @@
                                     @endif
                                 </div>
                             </nav>
-                            @foreach($recipe->comentarios()->get() as $comentar)
+                            @foreach($recipe->comentarios()->get() as $index => $comentar)
                             <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                                <div class="d-flex">
-                                    <img src="{{asset('storage/' . $comentar->user->profile_photo_path)}}" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">{{$comentar->created_at}}</p>
+                                <div class="d-flex align-items-start mb-4">
+                                    <img src="{{asset('storage/' . $comentar->user->profile_photo_path)}}" class="img-fluid rounded-circle me-3" style="width: 50px; height: 50px;" alt="">
+                                    <div class="w-100">
                                         <div class="d-flex justify-content-between">
-                                            <h5 style="padding-right:20px;">{{$comentar->user->nickname}}</h5>
-                                            <div class="d-flex mb-3 ">
-                                                @for ($i = 0; $i < 5; $i++) @if ($i < $comentar->puntuacion)
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    @else
-                                                    <i class="fa fa-star"></i>
-                                                    @endif
-                                                    @endfor
+                                            <div>
+                                                <h6 class="fw-bold mb-1">{{$comentar->user->nickname}}</h6>
+                                                <p class="mb-1 text-muted" style="font-size: 12px;">{{$comentar->created_at}}</p>
                                             </div>
-                                            <div class="icon-container">
-                                                <i class="fa fa-flag me-2 btn-report" id="reporcomentariotBtn" title="Reportar receta" style="text-align:right;"></i>
-                                                <form id="reportFormComentario" action="{{ route('usuario.bancomentario') }}" method="POST">
+                                            <div class="d-flex align-items-center">
+                                                <div class="d-flex me-2">
+                                                    @for ($i = 0; $i < 5; $i++) @if ($i < $comentar->puntuacion)
+                                                        <i class="fa fa-star text-warning"></i>
+                                                        @else
+                                                        <i class="fa fa-star text-muted"></i>
+                                                        @endif
+                                                        @endfor
+                                                </div>
+                                                <i class="fa fa-flag btn-report" id="reportComentarioBtn{{$index}}" title="Reportar comentario" style="cursor: pointer;"></i>
+                                                <form id="reportFormComentario{{$index}}" action="{{ route('usuario.bancomentario') }}" method="POST" class="d-none">
                                                     @csrf
-                                                    <input type="hidden" value="{{ $comentar->id }}" id="idComentario" name="idComentario">
-                                                    <input type="hidden" id="descripcionComentario" name="descripcionComentario">
+                                                    <input type="hidden" value="{{ $comentar->id }}" id="idComentario{{$index}}" name="idComentario">
+                                                    <input type="hidden" id="descripcionComentario{{$index}}" name="descripcionComentario">
                                                 </form>
                                             </div>
                                         </div>
-                                        <p>{{$comentar->comentario}}</p>
+                                        <p class="mb-0">{{$comentar->comentario}}</p>
                                     </div>
                                 </div>
                             </div>
+                            <div style="   width: 100%;height: 1px;margin-top: 15px;background-color: rgb(180,180,180);"></div>
                             @endforeach
+
+
                         </div>
                     </div>
                 </div>
@@ -175,73 +182,65 @@
     </div>
     <!-- Single Product End -->
     <script>
-        document.querySelectorAll('.clasificacion input').forEach(input => {
-            input.addEventListener('change', function() {
-                let clickedRating = this.value;
-                document.querySelectorAll('.clasificacion label i').forEach((icon, index) => {
-                    icon.className = (index >= clickedRating) ? 'fa fa-star' : 'fa fa-star text-secondary';
-                });
+        document.querySelectorAll('.btn-report').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.id === 'reportBtn') {
+                    document.getElementById('reportModal').style.display = 'flex';
+                } else {
+                    let index = this.id.replace('reportComentarioBtn', '');
+                    document.getElementById('reportModalComentario').style.display = 'flex';
+                    document.getElementById('sendReportComentario').dataset.index = index;
+                }
             });
         });
 
-        document.getElementById('reportBtn').addEventListener('click', function() {
-            document.getElementById('reportModal').style.display = 'flex';
-        });
-        
-        document.getElementById('reporcomentariotBtn').addEventListener('click', function() {
-            document.getElementById('reportModalComentario').style.display = 'flex';
-        });
-
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('reportModalComentario').style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target == document.getElementById('reportModalComentario')) {
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                document.getElementById('reportModal').style.display = 'none';
                 document.getElementById('reportModalComentario').style.display = 'none';
-            }
-        });
-
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('reportModal').style.display = 'none';
+            });
         });
 
         window.addEventListener('click', function(event) {
             if (event.target == document.getElementById('reportModal')) {
                 document.getElementById('reportModal').style.display = 'none';
             }
+            if (event.target == document.getElementById('reportModalComentario')) {
+                document.getElementById('reportModalComentario').style.display = 'none';
+            }
         });
 
         document.getElementById('sendReport').addEventListener('click', function() {
-
             var motivo = document.getElementById('motivo').value;
             document.getElementById('descripcion').value = "Reporte: " + motivo;
-            // Muestra un mensaje de alerta
-            //alert('Reporte enviado: ' + motivo);
 
-            // Oculta el modal
             document.getElementById('reportModal').style.display = 'none';
-
-            // Envía el formulario
             document.getElementById('reportForm').submit();
         });
 
         document.getElementById('sendReportComentario').addEventListener('click', function() {
-
             var motivo = document.getElementById('motivoComentario').value;
-            document.getElementById('descripcionComentario').value = "Reporte: " + motivo;
-            // Muestra un mensaje de alerta
-            //alert('Reporte enviado: ' + motivo);
+            let index = this.dataset.index;
+            document.getElementById('descripcionComentario' + index).value = "Reporte: " + motivo;
 
-            // Oculta el modal
             document.getElementById('reportModalComentario').style.display = 'none';
+            document.getElementById('reportFormComentario' + index).submit();
+        });
 
-            // Envía el formulario
-            document.getElementById('reportFormComentario').submit();
+        document.querySelectorAll('.clasificacion input').forEach(input => {
+            input.addEventListener('change', function() {
+                let clickedRating = parseInt(this.value);
+                let stars = this.parentNode.querySelectorAll('label i');
+                stars.forEach((star, index) => {
+                    if (index < clickedRating) {
+                        star.classList.add('text-secondary');
+                    } else {
+                        star.classList.remove('text-secondary');
+                    }
+                });
             });
-    </script>
-        
-    <script>
+        });
+
         document.getElementById('share-icon').onclick = function(event) {
             var icons = document.getElementById('action-icons');
             icons.style.display = icons.style.display === 'block' ? 'none' : 'block';
