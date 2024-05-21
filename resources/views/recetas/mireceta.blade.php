@@ -62,7 +62,7 @@
 
                             </div>
                             <div class="col-lg-7">
-                                <h4 class="fw-bold mb-3">Instrucciones</h4>
+                                <h4 class="fw-bold mb-3">Instruccion</h4>
                                 <ol>
                                     @foreach($recipe->instructions as $instrucciones)
                                     <li>{{$instrucciones->instruccion}}</li>
