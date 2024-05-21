@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
 :root{
-    --color-barra-lateral:rgb(255,255,255);
+    --color-barra-lateral: #e4e4e443;;
 
     --color-texto:rgb(0,0,0);
     --color-texto-menu:rgb(134,136,144);
@@ -18,27 +18,6 @@
 
     --color-scroll:rgb(192,192,192);
     --color-scroll-hover:rgb(134,134,134);
-}
-
-.dark-mode{
-    --color-barra-lateral:#21263C;
-
-    --color-texto:rgb(255,255,255);
-    --color-texto-menu:rgb(240, 240, 240);
-
-    --color-menu-hover:rgb(0,0,0);
-    --color-menu-hover-texto:rgb(238,238,238);
-
-    --color-boton:rgb(255,255,255);
-    --color-boton-texto:rgb(0,0,0);
-
-    --color-linea:rgb(90,90,90);
-
-    --color-switch-base :rgb(219, 219, 219);
-    --color-switch-circulo:rgb(255,255,255);
-
-    --color-scroll:rgb(68,69,74);
-    --color-scroll-hover:rgb(85,85,85);
 }
 
 
@@ -63,7 +42,7 @@ body{
     width: 250px;
     height: 100%;
     overflow: hidden;
-    padding: 20px 15px;
+    padding: 25px 15px;
     background-color: var(--color-barra-lateral);
     transition: width 0.5s ease,background-color 0.3s ease,left 0.5s ease;
     z-index: 50;
@@ -88,12 +67,16 @@ body{
 /*------------> Nombre de la página */
 .barra-lateral .nombre-pagina{
     width: 100%;
-    height: 45px;
     color: var(--color-texto);
     margin-top: 5px;
     margin-bottom: 15px;
     display: flex;
-    align-items: center;
+    align-items: center; /* Esto asegura que la imagen y el contenedor de textos estén alineados verticalmente */
+}
+
+.barra-lateral .nombre-pagina .textos {
+    display: flex;
+    flex-direction: column; /* Esto pone los spans uno encima del otro */
 }
 .barra-lateral .nombre-pagina img{
     min-width: 50px; /* Tamaño minimo del logo, barra lateral cerrada */
@@ -102,8 +85,11 @@ body{
     cursor: pointer;
 }
 .barra-lateral .nombre-pagina span{
-    margin-left: 5px;
     font-size: 25px;
+}
+
+.dashboard {
+    font-size: 15px !important;
 }
 
 
@@ -198,58 +184,7 @@ body{
     background-color: var(--color-linea);
 }
 
-/*----------------> Modo Oscuro*/
-.barra-lateral .modo-oscuro{
-    width: 100%;
-    margin-bottom: 80px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.barra-lateral .modo-oscuro .info{
-    width: 150px;
-    height: 45px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    color: var(--color-texto-menu);
-}
-.barra-lateral .modo-oscuro ion-icon{
 
-    width: 50px;
-    font-size: 20px;
-}
-
-/*--->switch*/
-.barra-lateral .modo-oscuro .switch{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    height: 45px;
-    cursor: pointer;
-}
-.barra-lateral .modo-oscuro .base{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 35px;
-    height: 20px;
-    background-color: var(--color-switch-base);
-    border-radius: 50px;
-}
-.barra-lateral .modo-oscuro .circulo{
-    position: absolute;
-    width: 18px;
-    height: 90%;
-    background-color: var(--color-switch-circulo);
-    border-radius: 50%;
-    left: 2px;
-    transition: left 0.5s ease;
-}
-.barra-lateral .modo-oscuro .circulo.prendido{
-    left: 15px;
-}
 
 /*-------------main*/
 
@@ -273,9 +208,6 @@ main.min-main{
 @media (max-height: 660px){
     .barra-lateral .nombre-pagina{
         margin-bottom: 5px;
-    }
-    .barra-lateral .modo-oscuro{
-        margin-bottom: 3px;
     }
 }
 @media (max-width: 600px){
@@ -305,7 +237,7 @@ main.min-main{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
-    background-color: #e4e4e4;
+    /*background-color: #e4e4e4; */
 }
 
 

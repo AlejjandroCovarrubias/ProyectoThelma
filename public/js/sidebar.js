@@ -1,8 +1,6 @@
 const cloud = document.getElementById("cloud");
 const barraLateral = document.querySelector(".barra-lateral");
 const spans = document.querySelectorAll(".spanbar");
-const palanca = document.querySelector(".switch");
-const circulo = document.querySelector(".circulo");
 const menu = document.querySelector(".menu");
 const main = document.querySelector("main");
 const subMenus = document.querySelectorAll('.sidebar__submenu'); // Seleccionar todos los submenús
@@ -39,12 +37,6 @@ menu.addEventListener("click", () => {
             span.classList.add("oculto");
         });
     }
-});
-
-palanca.addEventListener("click", () => {
-    let body = document.body;
-    body.classList.toggle("dark-mode");
-    circulo.classList.toggle("prendido");
 });
 
 cloud.addEventListener("click", () => {
