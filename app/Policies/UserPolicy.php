@@ -68,4 +68,9 @@ class UserPolicy
     {
         return $user->id===$usuario->id;
     }
+
+    public function verModerador(User $user): bool
+    {
+        return $user->moderador===1;
+    }
 }

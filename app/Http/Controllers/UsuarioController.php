@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -146,11 +147,36 @@ class UsuarioController extends Controller
 
     public function moderador($id){
         $usuario=User::findOrFail($id);
+        $this->authorize('verModerador',$usuario);
         $reportes=DB::table('user_comentario_reporte')->get();
         //dd($reportes);
         return view('moderador.vistamoderador',compact('usuario'),compact('reportes'));
     }
+
+    public function destroy($id){
+        $usuario=User::findOrFail($id);
+        $this->authorize('verModerador',Auth::user());
+        $usuario->delete();
+        return back();
+    }
+
+    public function destroyReporteComentario($id){
+        $this->authorize('verModerador',Auth::user());
+        DB::table('user_comentario_reporte')->where('id',$id)->delete();
+        return back();
+    }
+
+    public function setNewMod($id)
+    {
+        $this->authorize('verModerador',Auth::user());
+        $usuario=User::findOrFail($id);
+        $usuario->moderador=true;
+        $usuario->save();
+    }
+
     public function moderadorAdd(){
-        return view('moderador.addMod');
+        $this->authorize('verModerador',Auth::user());
+        $usuarios=User::where('moderador',false)->get();
+        return view('moderador.addMod',compact('usuarios'));
     }
 }

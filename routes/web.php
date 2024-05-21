@@ -63,4 +63,9 @@ Route::get('/search', [RecetaController::class, 'search'])->name('recetas.search
 Route::resource('comentario', ComentarioController::class);
 
 Route::get('/moderador/{usuario}',[UsuarioController::class,'moderador'])->name('usuario.moderador');
+
+Route::delete('/destroy/{usuario}', [UsuarioController::class,'destroy'])->name('usuario.destroy');
+
+Route::delete('/destroyComentario/{comentario}', [UsuarioController::class,'destroyReporteComentario'])->name('usuario.destroyReporteComentario');
+
 Route::get('/add/{usuario}',[UsuarioController::class,'moderadorAdd'])->name('usuario.moderadorAdd');

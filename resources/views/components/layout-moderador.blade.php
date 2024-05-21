@@ -42,7 +42,7 @@
                     <li class="sidebar__menu-item">
                         <a href="{{route('usuario.moderadorAdd', Auth::user()->id)}}" class="sidebar__menu-link">
                             <i class="fas fa-user-circle"></i> 
-                            <span class="spanbar">Añadir moderadores</span>
+                            <span class="spanbar">Gestionar cuentas</span>
                         </a>
                     </li>
                 </ul>
