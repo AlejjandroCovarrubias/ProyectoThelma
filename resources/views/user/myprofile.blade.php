@@ -68,7 +68,8 @@
                                     <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                                         <div class="col-lg-12">
                                             <div class="row g-4 justify-content-center">
-                                                @php $contador = 0; @endphp
+                                                @if($usuario->recetas->where('privacy', 'public')->count() > 0)
+                                                    @php $contador = 0; @endphp
                                                     @foreach($usuario->recetas->where('privacy','public') as $recipe)
                                                             @if($contador % 2 == 0)
                                                                 <div class="col-md-6 col-lg-6 col-xl-4">
@@ -94,8 +95,17 @@
                                                                     </div>
                                                                 </div>
                                                             @endif
-                                                    @php $contador++; @endphp
-                                                @endforeach
+                                                        @php $contador++; @endphp
+                                                    @endforeach
+                                                @else
+                                                    <div class="col-12">
+                                                        <div class="text-center p-5">
+                                                            <h2 class="mb-3">No hay recetas</h2>
+                                                            <p>Parece que aún no has creado ninguna receta. ¡Anímate a compartir tus creaciones con la comunidad!</p>
+                                                            <img src="{{ asset('img/no_tengo_recetas.png') }}" alt="No public recipes" class="img-fluid" style="max-width: 400px;">
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -198,9 +208,10 @@
                                         </form>
                                     </div>       
                                     <div class="tab-pane" id="nav-priv-recipes" role="tabpanel" aria-labelledby="nav-priv-recipes-tab">
-                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
                                             <div class="row g-4 justify-content-center">
-                                            @php $contador = 0; @endphp
+                                                @if($usuario->recetas->where('privacy', 'private')->count() > 0)    
+                                                    @php $contador = 0; @endphp
                                                     @foreach($usuario->recetas->where('privacy','private') as $recipe)
                                                             @if($contador % 2 == 0)
                                                                 <div class="col-md-6 col-lg-6 col-xl-4">
@@ -226,15 +237,25 @@
                                                                     </div>
                                                                 </div>
                                                             @endif
-                                                    @php $contador++; @endphp
-                                                @endforeach
+                                                        @php $contador++; @endphp
+                                                    @endforeach
+                                                @else
+                                                    <div class="col-12">
+                                                        <div class="text-center p-5">
+                                                            <h2 class="mb-3">No hay recetas privadas</h2>
+                                                            <p>Parece que aún no has creado recetas privadas. ¡Considera añadir algunas para personalizar tu colección!</p>
+                                                            <img src="{{ asset('img/sin_recetas_privadas.png') }}" alt="No private recipes" class="img-fluid" style="max-width: 400px;">
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="nav-fav" role="tabpanel" aria-labelledby="nav-fav-tab">
                                         <div class="col-lg-12">
                                             <div class="row g-4 justify-content-center">
-                                                @php $contador = 0; @endphp
+                                                @if(count($recetasFav) > 0)
+                                                    @php $contador = 0; @endphp
                                                     @foreach($recetasFav as $recipe)
                                                             @if($contador % 2 == 0)
                                                                 <div class="col-md-6 col-lg-6 col-xl-4">
@@ -260,8 +281,17 @@
                                                                     </div>
                                                                 </div>
                                                             @endif
-                                                    @php $contador++; @endphp
-                                                @endforeach
+                                                        @php $contador++; @endphp
+                                                    @endforeach
+                                                @else
+                                                    <div class="col-12">
+                                                        <div class="text-center p-5">
+                                                            <h2 class="mb-3">No tienes recetas marcadas como favoritos</h2>
+                                                            <p>Parece que aún no has seleccionado tus recetas favoritas. ¡Dale clic al corazón dentro de las recetas para añadir a favoritos!</p>
+                                                            <img src="{{ asset('img/receta_favorita.png') }}" alt="No favorite recipes" class="img-fluid" style="max-width: 400px;">
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

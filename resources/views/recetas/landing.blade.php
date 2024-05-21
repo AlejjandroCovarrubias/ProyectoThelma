@@ -76,7 +76,7 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    @foreach($recipes_following as $recipe)
+                                    @forelse ($recipes_following as $recipe)
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item d-flex flex-column"> 
                                             <div class="fruite-img">
@@ -107,7 +107,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12">
+                                            <div class="text-center p-5">
+                                                <h2 class="mb-3">¡Aún no hay recetas aquí!</h2>
+                                                <p>Parece que las personas que sigues aún no han compartido recetas. ¡Vuelve más tarde o sigue otros perfiles!</p>
+                                                <img src="{{ asset('img/perro_sin_recetas.png') }}" alt="No recipes found" class="img-fluid" style="max-width: 400px;">
+                                            </div>
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
