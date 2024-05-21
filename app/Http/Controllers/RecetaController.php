@@ -196,4 +196,10 @@ class RecetaController extends Controller
         return view('search.search',compact('recetasResultado', 'ingredientesResultado', 'tagsResu'));
     }
 
+    public function recetasReportadas()
+    {
+        $recetasReportadas = Receta::where('reportada', true)->get(); // Asumiendo que tienes una columna 'reportada' en tu tabla de recetas
+        return view('recetasReportadas', compact('recetasReportadas'));
+    }
+
 }

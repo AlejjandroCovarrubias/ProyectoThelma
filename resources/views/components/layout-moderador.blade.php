@@ -28,7 +28,7 @@
             <nav class="navegacion">
                 <ul class="sidebar__menu-list">
                     <li class="sidebar__menu-item" onclick="toggleSidebar()">
-                        <a href="#" class="sidebar__menu-link">
+                        <a href="{{route('usuario.moderadorRecetas', Auth::user()->id)}}" class="sidebar__menu-link">
                             <i class="fas fa-utensils"></i>
                             <span class="spanbar">Recetas</span>
                         </a>

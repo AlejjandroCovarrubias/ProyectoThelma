@@ -153,6 +153,15 @@ class UsuarioController extends Controller
         return view('moderador.vistamoderador',compact('usuario'),compact('reportes'));
     }
 
+    public function moderadorRecetas($id){
+        $usuario = User::findOrFail($id);
+        $recetasReportadas = DB::table('user_receta_reporte')->get(); 
+
+        return view('moderador.recetasReportadas', compact('usuario', 'recetasReportadas'));
+    }
+
+
+
     public function destroy($id){
         $usuario=User::findOrFail($id);
         $this->authorize('verModerador',Auth::user());

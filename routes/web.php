@@ -71,3 +71,4 @@ Route::delete('/destroy/{usuario}', [UsuarioController::class,'destroy'])->name(
 Route::delete('/destroyComentario/{comentario}', [UsuarioController::class,'destroyReporteComentario'])->name('usuario.destroyReporteComentario');
 
 Route::get('/add/{usuario}',[UsuarioController::class,'moderadorAdd'])->name('usuario.moderadorAdd');
+Route::get('/recetas-reportadas/{usuario}',[UsuarioController::class,'moderadorRecetas'])->name('usuario.moderadorRecetas');
