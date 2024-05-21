@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredients;
+use App\Mail\NuevaReceta;
+use App\Models\Tags;
 use App\Models\User;
 use App\Models\Receta;
+use App\Models\Ingredients;
 use App\Models\Instructions;
-use App\Models\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class RecetaController extends Controller
@@ -18,7 +20,8 @@ class RecetaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('create','index');
+        $this->middleware('auth')->only('index');
+        $this->middleware('verified')->only('create');
     }
 
     public function index()
@@ -47,12 +50,19 @@ class RecetaController extends Controller
             'visibility'=>'required',
             'text'=>'required|max:300',
         ]);
+        
         $cliente=User::findOrFail(Auth::id());
         $receta=new Receta();
         $receta->user_id=Auth::id();
         $receta->title_recipe=$request->title;
         $receta->descrip_recipe=$request->text;
         $receta->privacy=$request->visibility;
+
+        if($request->file('picRecipe')->isValid())
+        {
+            $receta->ubiFotoReceta=$request->picRecipe->store('','public');
+            $receta->mimeFotoReceta=$request->picRecipe->getClientMimeType();
+        }
         
         $cliente->recetas()->save($receta);
 
@@ -67,6 +77,8 @@ class RecetaController extends Controller
         foreach ($request->ingrediente as $ingredient){
             $receta->ingredients()->create(['ingredient' => $ingredient]);
         }
+
+        Mail::to(Auth::user()->email)->send(new NuevaReceta($receta));
         return redirect()->route('receta.index');
     }
 
@@ -110,6 +122,17 @@ class RecetaController extends Controller
         $recipe->title_recipe=$request->title;
         $recipe->descrip_recipe=$request->text;
         $recipe->privacy=$request->visibility;
+
+        if($recipe->ubiFotoReceta)
+        {
+            Storage::delete('public/'.$recipe->ubiFotoReceta);
+        }
+
+        if($request->file('picRecipe')->isValid())
+        {
+            $recipe->ubiFotoReceta=$request->picRecipe->store('','public');
+            $recipe->mimeFotoReceta=$request->picRecipe->getClientMimeType();
+        }
         
         $recipe->save();
 
@@ -173,5 +196,4 @@ class RecetaController extends Controller
         return view('search.search',compact('recetasResultado', 'ingredientesResultado', 'tagsResu'));
     }
 
-    
 }
