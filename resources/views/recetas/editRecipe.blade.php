@@ -65,30 +65,31 @@
                                 </div>
 
                                 <script>
-                                    document.getElementById("add-ingr").addEventListener("click", function() {
-                                        var container = document.getElementById("ingredientes-container");
-                                        var totalIngredientes = container.children.length-1; // Obtener el número total de ingredientes y sumar 1
-                                        
-                                        var nuevoPaso = document.createElement("div");
-                                        nuevoPaso.className = "border-bottom rounded";
-                                        
-                                        var nuevoLabel = document.createElement("label");
-                                        nuevoLabel.textContent = "Ingrediente " + totalIngredientes;
-                                        nuevoLabel.style.paddingRight = "25px";
-                                        
-                                        var nuevaInput = document.createElement("input");
-                                        nuevaInput.type = "text";
-                                        nuevaInput.placeholder = "Ingrediente";
-                                        nuevaInput.name = "ingrediente[]";
-                                        nuevaInput.id="ingrediente"+totalIngredientes;
-                                        nuevaInput.className = "form-control border-0 me-4"
-                                        
-                                        nuevoPaso.appendChild(nuevoLabel);
-                                        nuevoPaso.appendChild(nuevaInput);
-                                        
-                                        container.appendChild(nuevoPaso);
+                                document.getElementById("add-ingr").addEventListener("click", function() {
+                                    var container = document.getElementById("ingredientes-container");
+                                    var totalIngredientes = container.querySelectorAll('input[name^="ingrediente"]').length + 1; // Obtener el número total de ingredientes y sumar 1
+                                    
+                                    var nuevoPaso = document.createElement("div");
+                                    nuevoPaso.className = "border-bottom rounded";
+                                    
+                                    var nuevoLabel = document.createElement("label");
+                                    nuevoLabel.textContent = "Ingrediente " + totalIngredientes;
+                                    nuevoLabel.style.paddingRight = "25px";
+                                    
+                                    var nuevaInput = document.createElement("input");
+                                    nuevaInput.type = "text";
+                                    nuevaInput.placeholder = "Ingrediente";
+                                    nuevaInput.name = "ingrediente[]";
+                                    nuevaInput.id = "ingrediente" + totalIngredientes;
+                                    nuevaInput.className = "form-control border-0 me-4";
+                                    
+                                    nuevoPaso.appendChild(nuevoLabel);
+                                    nuevoPaso.appendChild(nuevaInput);
+                                    
+                                    container.appendChild(nuevoPaso);
                                     });
                                 </script>
+
 
                                 <br>
 
@@ -110,30 +111,31 @@
                                 </div>
 
                                 <script>
-                                    document.getElementById("add-instr").addEventListener("click", function() {
-                                        var container = document.getElementById("instrucciones-container");
-                                        var totalPasos = container.children.length-1; // Obtener el número total de pasos y sumar 1
-                                        
-                                        var nuevoPaso = document.createElement("div");
-                                        nuevoPaso.className = "border-bottom rounded";
-                                        
-                                        var nuevoLabel = document.createElement("label");
-                                        nuevoLabel.textContent = "Paso " + totalPasos;
-                                        nuevoLabel.style.paddingRight = "25px";
-                                        
-                                        var nuevaInput = document.createElement("input");
-                                        nuevaInput.type = "text";
-                                        nuevaInput.placeholder = "Ingresa el paso...";
-                                        nuevaInput.name = "instruc[]";
-                                        nuevaInput.id="instruc"+totalPasos;
-                                        nuevaInput.className = "form-control border-0 me-4";
-                                        
-                                        nuevoPaso.appendChild(nuevoLabel);
-                                        nuevoPaso.appendChild(nuevaInput);
-                                        
-                                        container.appendChild(nuevoPaso);
+                                document.getElementById("add-instr").addEventListener("click", function() {
+                                    var container = document.getElementById("instrucciones-container");
+                                    var totalPasos = container.querySelectorAll('input[name^="instruc"]').length + 1; // Obtener el número total de pasos y sumar 1
+                                    
+                                    var nuevoPaso = document.createElement("div");
+                                    nuevoPaso.className = "border-bottom rounded";
+                                    
+                                    var nuevoLabel = document.createElement("label");
+                                    nuevoLabel.textContent = "Paso " + totalPasos;
+                                    nuevoLabel.style.paddingRight = "25px";
+                                    
+                                    var nuevaInput = document.createElement("input");
+                                    nuevaInput.type = "text";
+                                    nuevaInput.placeholder = "Ingresa el paso...";
+                                    nuevaInput.name = "instruc[]";
+                                    nuevaInput.id = "instruc" + totalPasos;
+                                    nuevaInput.className = "form-control border-0 me-4";
+                                    
+                                    nuevoPaso.appendChild(nuevoLabel);
+                                    nuevoPaso.appendChild(nuevaInput);
+                                    
+                                    container.appendChild(nuevoPaso);
                                     });
                                 </script>
+
 
                                 <br>
 
@@ -155,30 +157,31 @@
                                 </div>
 
                                 <script>
-                                    document.getElementById("add-tag").addEventListener("click", function() {
-                                        var container = document.getElementById("tag-container");
-                                        var totaltags = container.children.length-1; // Obtener el número total de pasos y sumar 1
-                                        
-                                        var nuevoPaso = document.createElement("div");
-                                        nuevoPaso.className = "border-bottom rounded";
-                                        
-                                        var nuevoLabel = document.createElement("label");
-                                        nuevoLabel.textContent = "Tag " + totaltags;
-                                        nuevoLabel.style.paddingRight = "25px";
-                                        
-                                        var nuevaInput = document.createElement("input");
-                                        nuevaInput.type = "text";
-                                        nuevaInput.placeholder = "Ingresa el tag...";
-                                        nuevaInput.name = "tags[]";
-                                        nuevaInput.id="tag"+totaltags;
-                                        nuevaInput.className = "form-control border-0 me-4";
-                                        
-                                        nuevoPaso.appendChild(nuevoLabel);
-                                        nuevoPaso.appendChild(nuevaInput);
-                                        
-                                        container.appendChild(nuevoPaso);
+                                document.getElementById("add-tag").addEventListener("click", function() {
+                                    var container = document.getElementById("tag-container");
+                                    var totalTags = container.querySelectorAll('input[name^="tags"]').length + 1; // Obtener el número total de tags y sumar 1
+                                    
+                                    var nuevoPaso = document.createElement("div");
+                                    nuevoPaso.className = "border-bottom rounded";
+                                    
+                                    var nuevoLabel = document.createElement("label");
+                                    nuevoLabel.textContent = "Tag " + totalTags;
+                                    nuevoLabel.style.paddingRight = "25px";
+                                    
+                                    var nuevaInput = document.createElement("input");
+                                    nuevaInput.type = "text";
+                                    nuevaInput.placeholder = "Ingresa el tag...";
+                                    nuevaInput.name = "tags[]";
+                                    nuevaInput.id = "tag" + totalTags;
+                                    nuevaInput.className = "form-control border-0 me-4";
+                                    
+                                    nuevoPaso.appendChild(nuevoLabel);
+                                    nuevoPaso.appendChild(nuevaInput);
+                                    
+                                    container.appendChild(nuevoPaso);
                                     });
                                 </script>
+
 
                                 <br>
 
