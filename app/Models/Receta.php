@@ -39,4 +39,8 @@ class Receta extends Model
     {
         return $this->belongsToMany(User::class,'user_receta','recipe_id','user_id');
     }
+    public function reportadoBy()
+    {
+        return $this->belongsToMany(User::class,'user_receta','recipe_id','user_id');
+    }
 }

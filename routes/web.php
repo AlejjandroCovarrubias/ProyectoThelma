@@ -37,6 +37,10 @@ Route::get('/fav/{id}', [UsuarioController::class,'fav'])->name('usuario.fav');
 
 Route::get('/unfav/{id}', [UsuarioController::class,'unfav'])->name('usuario.unfav');
 
+Route::post('/banreceta', [UsuarioController::class,'banreceta'])->name('usuario.banreceta');
+
+Route::post('/bancomentario', [UsuarioController::class,'bancomentario'])->name('usuario.bancomentario');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

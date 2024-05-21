@@ -20,4 +20,8 @@ class Comentario extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function reportadoBy()
+    {
+        return $this->belongsToMany(User::class,'user_comentario','comentario_id','user_id');
+    }
 }

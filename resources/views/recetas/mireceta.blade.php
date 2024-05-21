@@ -177,11 +177,24 @@
         });
 
         document.getElementById('sendReport').addEventListener('click', function() {
-            // Aquí puedes agregar la lógica para enviar el reporte
-            alert('Reporte enviado: ' + document.getElementById('motivo').value);
+
+            var motivo = document.getElementById('motivo').value;
+            document.getElementById('descripcion').value = "Reporte: " + motivo;
+            // Muestra un mensaje de alerta
+            //alert('Reporte enviado: ' + motivo);
+
+            // Oculta el modal
             document.getElementById('reportModal').style.display = 'none';
+
+            // Envía el formulario
+            document.getElementById('reportForm').submit();
         });
     </script>
+        <form id="reportForm" action="{{ route('usuario.banreceta') }}" method="POST">
+            @csrf
+            <input type="hidden" value="{{ $recipe->id }}" id="id" name="id">
+            <input type="hidden" id="descripcion" name="descripcion">
+        </form>
     <script>
         document.getElementById('share-icon').onclick = function(event) {
             var icons = document.getElementById('action-icons');

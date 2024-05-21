@@ -116,4 +116,31 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function banreceta(Request $request)
+    {
+        $request->validate([
+            'descripcion' => 'string|max:255',
+        ]);
+        $id=request()->id;
+        $descripcion=request()->descripcion;
+
+
+        $user=Auth::user();
+        $user->reporteRecipes()->attach($id, ['descripcion' => $descripcion]);
+        return back()->with('status', 'Receta reportada correctamente.');
+    }
+    public function bancomentario(Request $request)
+    {
+        $request->validate([
+            'descripcion' => 'string|max:255',
+        ]);
+        $id=request()->id;
+        $descripcion=request()->descripcion;
+
+
+        $user=Auth::user();
+        $user->reporteComentario()->attach($id, ['descripcion' => $descripcion]);
+        return back();
+    }
+
 }

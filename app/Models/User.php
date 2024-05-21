@@ -74,6 +74,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Receta::class,'user_receta','user_id','recipe_id');
     }
+    public function reporteRecipes()
+    {
+        return $this->belongsToMany(Receta::class,'user_receta_reporte','user_id','recipe_id');
+    }
+
+    public function reporteComentario()
+    {
+        return $this->belongsToMany(Comentario::class,'user_comentario_repote','user_id','comentario_id','descripcion');
+    }
 
     public function following()
     {
