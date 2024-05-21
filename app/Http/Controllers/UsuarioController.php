@@ -17,7 +17,7 @@ class UsuarioController extends Controller
     {
         $this->middleware('auth')->only('follow','unfollow','fav','unfav');
     }
- 
+
     public function myProfile($id)
     {
         $usuario=User::findOrFail($id);
@@ -143,4 +143,8 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function moderador($id){
+        $usuario=User::findOrFail($id);
+        return view('moderador.vistamoderador',compact('usuario'));
+    }
 }

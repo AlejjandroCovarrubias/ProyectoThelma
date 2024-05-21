@@ -61,3 +61,4 @@ Route::get('/search', [RecetaController::class, 'search'])->name('recetas.search
 
 Route::resource('comentario', ComentarioController::class);
 
+Route::get('/moderador/{usuario}',[UsuarioController::class,'moderador'])->name('usuario.moderador');
