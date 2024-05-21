@@ -22,6 +22,11 @@
                                 @endif
                                 <i class="fas fa-share-alt icon" id="share-icon"></i>
                                 <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
+                                <form id="reportForm" action="{{ route('usuario.banreceta') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $recipe->id }}" id="id" name="id">
+                                    <input type="hidden" id="descripcion" name="descripcion">
+                                </form>
                                 <ul class="action-icons" id="action-icons">
                                     <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
                                     <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
@@ -130,10 +135,10 @@
                                             </div>
                                             <div class="icon-container">
                                                 <i class="fa fa-flag me-2 btn-report" id="reporcomentariotBtn" title="Reportar receta" style="text-align:right;"></i>
-                                                <form id="reportForm" action="{{ route('usuario.bancomentario') }}" method="POST">
+                                                <form id="reportFormComentario" action="{{ route('usuario.bancomentario') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" value="{{ $comentar->id }}" id="id" name="id">
-                                                    <input type="hidden" id="descripcion" name="descripcion">
+                                                    <input type="hidden" value="{{ $comentar->id }}" id="idComentario" name="idComentario">
+                                                    <input type="hidden" id="descripcionComentario" name="descripcionComentario">
                                                 </form>
                                             </div>
                                         </div>
@@ -159,6 +164,15 @@
             <button id="sendReport" class="btn-send mt-3">Enviar</button>
         </div>
     </div>
+
+    <div id="reportModalComentario" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4>Motivo</h4>
+            <textarea id="motivoComentario" class="form-control" rows="4" placeholder="Escribe el motivo del reporte" style="resize: none"></textarea>
+            <button id="sendReportComentario" class="btn-send mt-3">Enviar</button>
+        </div>
+    </div>
     <!-- Single Product End -->
     <script>
         document.querySelectorAll('.clasificacion input').forEach(input => {
@@ -173,9 +187,19 @@
         document.getElementById('reportBtn').addEventListener('click', function() {
             document.getElementById('reportModal').style.display = 'flex';
         });
-
+        
         document.getElementById('reporcomentariotBtn').addEventListener('click', function() {
-            document.getElementById('reportModal').style.display = 'flex';
+            document.getElementById('reportModalComentario').style.display = 'flex';
+        });
+
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('reportModalComentario').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('reportModalComentario')) {
+                document.getElementById('reportModalComentario').style.display = 'none';
+            }
         });
 
         document.querySelector('.close').addEventListener('click', function() {
@@ -201,12 +225,22 @@
             // Envía el formulario
             document.getElementById('reportForm').submit();
         });
+
+        document.getElementById('sendReportComentario').addEventListener('click', function() {
+
+            var motivo = document.getElementById('motivoComentario').value;
+            document.getElementById('descripcionComentario').value = "Reporte: " + motivo;
+            // Muestra un mensaje de alerta
+            //alert('Reporte enviado: ' + motivo);
+
+            // Oculta el modal
+            document.getElementById('reportModalComentario').style.display = 'none';
+
+            // Envía el formulario
+            document.getElementById('reportFormComentario').submit();
+            });
     </script>
-        <form id="reportForm" action="{{ route('usuario.banreceta') }}" method="POST">
-            @csrf
-            <input type="hidden" value="{{ $recipe->id }}" id="id" name="id">
-            <input type="hidden" id="descripcion" name="descripcion">
-        </form>
+        
     <script>
         document.getElementById('share-icon').onclick = function(event) {
             var icons = document.getElementById('action-icons');

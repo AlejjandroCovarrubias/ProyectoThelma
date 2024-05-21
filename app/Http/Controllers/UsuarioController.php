@@ -134,8 +134,8 @@ class UsuarioController extends Controller
         $request->validate([
             'descripcion' => 'string|max:255',
         ]);
-        $id=request()->id;
-        $descripcion=request()->descripcion;
+        $id=request()->idComentario;
+        $descripcion=request()->descripcionComentario;
 
 
         $user=Auth::user();
