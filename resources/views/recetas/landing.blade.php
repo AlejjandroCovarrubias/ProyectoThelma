@@ -42,7 +42,11 @@
                                             <div class="fruite-img">
                                                 <img src="{{ asset('storage/'.$recipe->ubiFotoReceta) }}" width="415" height="200" class="img-fluid w-100 rounded-top"> 
                                             </div>
-                                            <div class="p-2 text-white bg-secondary px-3 py-1 rounded position-absolute border border-secondary border-top-0 rounded-bottom" style="top: 10px; left: 10px;">Tag</div>
+                                            <div class="tag-container">
+                                                @foreach($recipe->tags as $tag)
+                                                    <span class="badge">{{ Str::limit($tag->tag, 11, '...') }}</span>
+                                                @endforeach
+                                            </div>
                                             <div class="p-4 flex-grow-1"> 
                                                 <h4>{{ Str::limit($recipe->title_recipe, 50, '...') }}</h4>
                                                 <p>{{ Str::limit($recipe->descrip_recipe, 100, '...') }}</p>
@@ -78,7 +82,11 @@
                                             <div class="fruite-img">
                                                 <img src="{{ asset('storage/'.$recipe->ubiFotoReceta) }}" width="415" height="200" class="img-fluid w-100 rounded-top"> 
                                             </div>
-                                            <div class="p-2 text-white bg-secondary px-3 py-1 rounded position-absolute border border-secondary border-top-0 rounded-bottom" style="top: 10px; left: 10px;">Tag</div>
+                                            <div class="tag-container">
+                                                @foreach($recipe->tags as $tag)
+                                                    <span class="badge">{{ Str::limit($tag->tag, 11, '...') }}</span>
+                                                @endforeach
+                                            </div>
                                             <div class="p-4 flex-grow-1"> 
                                                 <h4>{{ Str::limit($recipe->title_recipe, 50, '...') }}</h4>
                                                 <p>{{ Str::limit($recipe->descrip_recipe, 100, '...') }}</p>
@@ -106,9 +114,60 @@
                     </div>
                     <!-- Más vistas de filtrado -->
                 </div>
+                <!--fin de las tarjetas para las recetas-->
             </div>
         </div>
     </div>
     <!-- Fruits Shop End-->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const allTagsContainers = document.querySelectorAll('.tag-container');
+
+            allTagsContainers.forEach(container => {
+                let tags = Array.from(container.children); // Todos los spans dentro del contenedor
+                if (tags.length > 0) {
+                    tags[0].style.display = 'inline-block'; // Muestra el primer tag inicialmente
+                }
+
+                let currentTagIndex = 0;
+                setInterval(() => {
+                    tags.forEach(tag => tag.style.display = 'none'); // Esconde todos los tags
+                    tags[currentTagIndex].style.display = 'inline-block'; // Muestra el tag actual
+                    currentTagIndex = (currentTagIndex + 1) % tags.length; // Mueve al siguiente tag
+                }, 4000); // Cambia cada 4 segundos
+            });
+        });
+    </script>
+
+    <style>
+        .tag-container {
+            background-color: #FFA500; 
+            color: white;
+            padding: 5px 10px; 
+            border-radius: 12px; 
+            position: absolute;
+            top: 10px; 
+            left: 10px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 160px;
+            height: 40px; 
+            overflow: hidden; 
+        }
+
+        .badge {
+            background-color: transparent; 
+            border-radius: 12px; 
+            color: inherit; 
+            padding: 5px 10px; 
+            display: none;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 100%; 
+            font-size: 1em; 
+        }
+    </style>
 
 </x-Layout>

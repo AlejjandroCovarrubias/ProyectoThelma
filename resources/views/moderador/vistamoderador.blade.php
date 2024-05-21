@@ -39,20 +39,20 @@
                         </a>
                     </li>                
                     <li class="sidebar__menu-item" id="inventario">
-                        <a href="#" class="sidebar__menu-link" onclick="toggleSubMenu('submenu-inventario')">
-                            <i class="fas fa-box"></i> 
+                        <a href="{{ route('receta.create')}}" class="sidebar__menu-link" onclick="toggleSubMenu('submenu-inventario')">
+                            <i class="fas fa-comment-dots"></i>
                             <span class="spanbar">Comentarios reportados</span>
                         </a>
                     </li>
                     <li class="sidebar__menu-item" id="ventas">
                         <a href="#" class="sidebar__menu-link" onclick="toggleSubMenu('submenu-ventas')">
-                            <i class="fas fa-shopping-cart"></i> 
+                            <i class="fas fa-book-open"></i> 
                             <span class="spanbar">Recetas reportadas</span>
                         </a>
                     </li>
                     <li class="sidebar__menu-item" id="compras">
                         <a href="#" class="sidebar__menu-link" onclick="toggleSubMenu('submenu-compras')">
-                            <i class="fas fa-shopping-bag"></i>
+                            <i class="fas fa-user"></i>
                             <span class="spanbar">Cuentas reportadas</span>
                         </a>
                     </li>
@@ -87,6 +87,7 @@
             var submenu = document.getElementById(submenuId);
             submenu.classList.toggle('show');
             }
+        </script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <script src="{{asset('js/sideBar.js')}}"></script>
