@@ -208,7 +208,7 @@ class UsuarioController extends Controller
 
     public function moderadorAdd(){
         $this->authorize('verModerador',Auth::user());
-            
+        $usuarios=User::where('moderador',false)->get();
         return view('moderador.addMod',compact('usuarios'));
     }
 

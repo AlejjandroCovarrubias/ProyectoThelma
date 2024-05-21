@@ -18,7 +18,7 @@
                                         @if(!$esFavorito)
                                         <a href="{{route('usuario.fav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a>
                                         @else
-                                        <a href="{{route('usuario.unfav',$recipe->id)}}"><i class="fas fa-heart icon"></i></a> <!-- Falta cambiar de color el corazon de fav -->
+                                        <a href="{{route('usuario.unfav',$recipe->id)}}"><i class="fas fa-heart icon" style="color: red"></i></a> <!-- Falta cambiar de color el corazon de fav -->
                                         @endif
                                         <i class="fas fa-share-alt icon" id="share-icon"></i>
                                         <i class="fa fa-flag me-2 btn-report" id="reportBtn" title="Reportar receta" style="margin-left: 40px;"></i>
@@ -29,7 +29,7 @@
                                         </form>
                                         <ul class="action-icons" id="action-icons">
                                             <li onclick="copyLink()"><i class="fas fa-copy"></i></li>
-                                            <li onclick="downloadContent()"><i class="fas fa-download"></i></li>
+                                            <!--<li onclick="downloadContent()"><i class="fas fa-download"></i></li>-->
                                         </ul>
                                     </div>
                                 </div>
