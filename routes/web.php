@@ -66,6 +66,8 @@ Route::get('/moderador/{usuario}',[UsuarioController::class,'moderador'])->name(
 
 Route::get('/newmod/{usuario}',[UsuarioController::class,'setNewMod'])->name('usuario.setNewMod');
 
+Route::get('/setinfluencer/{usuario}',[UsuarioController::class,'setinfluencer'])->name('usuario.setinfluencer');
+
 Route::delete('/destroy/{usuario}', [UsuarioController::class,'destroy'])->name('usuario.destroy');
 
 Route::delete('/destroyComentario/{comentario}', [UsuarioController::class,'destroyReporteComentario'])->name('usuario.destroyReporteComentario');
@@ -73,4 +75,5 @@ Route::delete('/destroyReceta/{receta}', [UsuarioController::class,'destroyRepor
 Route::get('/recetaReportada/{receta}', [UsuarioController::class,'recetaReportada'])->name('usuario.recetaReportada');
 
 Route::get('/add/{usuario}',[UsuarioController::class,'moderadorAdd'])->name('usuario.moderadorAdd');
+
 Route::get('/recetas-reportadas/{usuario}',[UsuarioController::class,'moderadorRecetas'])->name('usuario.moderadorRecetas');

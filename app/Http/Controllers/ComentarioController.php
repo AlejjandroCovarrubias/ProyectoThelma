@@ -12,7 +12,7 @@ class ComentarioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified')->only('create');
+        $this->middleware('verified')->only('store');
     }
     /**
      * Display a listing of the resource.

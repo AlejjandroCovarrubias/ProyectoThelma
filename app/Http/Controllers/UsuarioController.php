@@ -18,7 +18,7 @@ class UsuarioController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('follow','unfollow','fav','unfav','banreceta','bancomentario');
+        $this->middleware('auth')->only('follow','unfollow','fav','unfav','banreceta','bancomentario','moderador','moderadorRecetas','moderadorAdd','setinfluencer','setNewMod','destroyReporteComentario','destroy','recetaReportada','destroyReporteReceta');
     }
 
     public function myProfile($id)
@@ -197,9 +197,18 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function setinfluencer($id)
+    {
+        $this->authorize('verModerador',Auth::user());
+        $usuario=User::findOrFail($id);
+        $usuario->influencer=true;
+        $usuario->save();
+        return back();
+    }
+
     public function moderadorAdd(){
         $this->authorize('verModerador',Auth::user());
-        $usuarios=User::where('moderador',false)->get();
+            
         return view('moderador.addMod',compact('usuarios'));
     }
 

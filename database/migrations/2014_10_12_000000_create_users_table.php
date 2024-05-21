@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('twitterID')->nullable();
             $table->string('instagramID')->nullable();
             $table->string('facebookID')->nullable();
+            $table->boolean('influencer')->default(false);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

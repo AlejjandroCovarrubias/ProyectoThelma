@@ -6,8 +6,12 @@
                             <div class="col-lg-6">
                                 <img src="{{ asset('storage/' . $usuario->profile_photo_path ) }}" class="img-fluid rounded-circle" alt="Image" style="width: 250px; height: 250px;">
                             </div>
-                            <div class="col-lg-6">
-                                <h4 class="fw-bold mb-3">{{$usuario->nickname}} / @ {{$usuario->name}}</h4>
+                            <div class="col-lg-6"> 
+                                @if($usuario->influencer==true)
+                                    <h4 class="fw-bold mb-3">{{$usuario->nickname}} / @ {{$usuario->name}} <img src="{{asset('/img/influencer.png')}}" width="5%"></h4>
+                                @else
+                                    <h4 class="fw-bold mb-3">{{$usuario->nickname}} / @ {{$usuario->name}}</h4>
+                                @endif
                                 <h5 class="fw-bold mb-3">Sobre mi</h5>
                                 <p class="mb-3">{{$usuario->aboutyou}}</p>
                                 <div>
