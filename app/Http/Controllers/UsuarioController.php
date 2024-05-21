@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\Receta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -155,6 +156,7 @@ class UsuarioController extends Controller
 
     public function moderadorRecetas($id){
         $usuario = User::findOrFail($id);
+        $this->authorize('verModerador',$usuario);
         $recetasReportadas = DB::table('user_receta_reporte')->get(); 
 
         return view('moderador.recetasReportadas', compact('usuario', 'recetasReportadas'));
@@ -175,6 +177,17 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function destroyReporteReceta($id){
+        $this->authorize('verModerador',Auth::user());
+        DB::table('user_receta_reporte')->where('id',$id)->delete();
+        return back();
+    }
+    public function recetaReportada($id){
+        $recipe=Receta::findOrFail($id);
+        $this->authorize('verModerador',Auth::user());
+        return view('moderador.recetaReportada', compact('recipe'));
+    }
+
     public function setNewMod($id)
     {
         $this->authorize('verModerador',Auth::user());
@@ -189,4 +202,5 @@ class UsuarioController extends Controller
         $usuarios=User::where('moderador',false)->get();
         return view('moderador.addMod',compact('usuarios'));
     }
+
 }

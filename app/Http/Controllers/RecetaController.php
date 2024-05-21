@@ -162,7 +162,7 @@ class RecetaController extends Controller
     public function destroy(Receta $receta, $id)
     {
         $recipe=Receta::findOrFail($id);
-        $this->authorize('delete',$recipe);
+        //$this->authorize('delete',$recipe);
         Storage::delete('public/'.$receta->ubiFotoReceta);
         $recipe->delete();
         return back();

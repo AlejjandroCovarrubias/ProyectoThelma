@@ -69,6 +69,8 @@ Route::get('/newmod/{usuario}',[UsuarioController::class,'setNewMod'])->name('us
 Route::delete('/destroy/{usuario}', [UsuarioController::class,'destroy'])->name('usuario.destroy');
 
 Route::delete('/destroyComentario/{comentario}', [UsuarioController::class,'destroyReporteComentario'])->name('usuario.destroyReporteComentario');
+Route::delete('/destroyReceta/{receta}', [UsuarioController::class,'destroyReporteReceta'])->name('usuario.destroyReporteReceta');
+Route::get('/recetaReportada/{receta}', [UsuarioController::class,'recetaReportada'])->name('usuario.recetaReportada');
 
 Route::get('/add/{usuario}',[UsuarioController::class,'moderadorAdd'])->name('usuario.moderadorAdd');
 Route::get('/recetas-reportadas/{usuario}',[UsuarioController::class,'moderadorRecetas'])->name('usuario.moderadorRecetas');
