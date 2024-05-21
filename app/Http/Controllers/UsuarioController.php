@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
@@ -145,6 +146,11 @@ class UsuarioController extends Controller
 
     public function moderador($id){
         $usuario=User::findOrFail($id);
-        return view('moderador.vistamoderador',compact('usuario'));
+        $reportes=DB::table('user_comentario_reporte')->get();
+        //dd($reportes);
+        return view('moderador.vistamoderador',compact('usuario'),compact('reportes'));
+    }
+    public function moderadorAdd(){
+        return view('moderador.addMod');
     }
 }

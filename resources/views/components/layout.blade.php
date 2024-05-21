@@ -61,7 +61,7 @@
                                         <li><a href="{{route('receta.create')}}"></i> Crear receta</a></li>
                                         <li><a href="{{route('receta.index')}}"></i> Mis recetas</a></li>
                                         @if(Auth::user()->moderador==true)
-                                            <li><a href="#"></i>Moderador</a></li>                                           
+                                            <li><a href="{{route('usuario.moderador', Auth::user()->id)}}"></i>Moderador</a></li>                                           
                                         @endif
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
