@@ -49,6 +49,7 @@ class RecetaController extends Controller
             'title'=>'required|max:255',
             'visibility'=>'required',
             'text'=>'required|max:300',
+            'picRecipe'=>'required',
         ]);
         
         $cliente=User::findOrFail(Auth::id());
@@ -117,6 +118,7 @@ class RecetaController extends Controller
             'title'=>'required|max:255',
             'visibility'=>'required',
             'text'=>'required|max:300',
+            'picRecipe'=>'required',
         ]);
         $this->authorize('update',$recipe);
         $recipe->title_recipe=$request->title;
