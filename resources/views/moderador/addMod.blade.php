@@ -23,7 +23,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">Eliminar cuenta</button> <!-- Alinear el boton -->
                             </form>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">Ascender a moderador</a> 
+                            <a href="{{route('usuario.setNewMod',$usuario->id)}}" class="btn border border-secondary rounded-pill px-3 text-primary">Ascender a moderador</a> 
                         </div>
                     </div>
                 </div>

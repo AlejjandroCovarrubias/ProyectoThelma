@@ -172,6 +172,7 @@ class UsuarioController extends Controller
         $usuario=User::findOrFail($id);
         $usuario->moderador=true;
         $usuario->save();
+        return back();
     }
 
     public function moderadorAdd(){
